@@ -1,0 +1,11 @@
+3 mục này là Hình thức nhận món (Bestellart) khi khách đặt đồ ăn qua WhatsApp:
+
+1. 🥡 Abholung (Im Restaurant) — Mang về (Takeaway)
+Ý nghĩa: Khách tự đến quán (Holzmarkt 3, Ludwigsburg) để nhận món mang về.
+Đặc điểm: Đây là hình thức phổ biến nhất khi khách gọi món online ở Đức. Khách chỉ cần chọn giờ mong muốn đến lấy đồ (ví dụ: lấy ngay sau 20–30 phút, hoặc sau 45 phút).
+2. 🥢 Vor Ort (Am Tisch speisen) — Ăn tại chỗ ở nhà hàng (Dine-in)
+Ý nghĩa: Dành cho khách đang ngồi tại bàn trong quán và dùng điện thoại quét xem menu để gọi món, hoặc khách chuẩn bị đến ăn tại chỗ.
+Đặc điểm: Khi khách bấm chọn mục này, hệ thống sẽ tự động hiện thêm ô Tischnummer (Số bàn) để nhân viên phục vụ và bếp biết mang món ra đúng bàn của khách.
+3. 🛵 Lieferung (Auf Anfrage) — Giao hàng tận nơi (Delivery)
+Ý nghĩa: Khách muốn quán ship đồ ăn đến tận nhà hoặc văn phòng ("Auf Anfrage" nghĩa là theo thỏa thuận khu vực/khoảng cách của quán).
+Đặc điểm: Khi khách bấm chọn mục này, hệ thống sẽ tự động hiện thêm ô nhập Lieferadresse (Địa chỉ giao hàng) để quán biết địa chỉ và báo phí ship / thời gian giao qua WhatsApp.
