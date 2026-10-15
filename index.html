@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hannayuki Ludwigsburg | Sushi, Ramen &amp; Asiatische Küche</title>
+  <meta name="description" content="Hannayuki Ludwigsburg am Holzmarkt 3: Authentisches Sushi, handwerklich zubereitete Ramen & asiatische Spezialitäten. Jetzt online auswählen und direkt per WhatsApp bestellen oder Tisch reservieren.">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hannayuki Ludwigsburg | Sushi, Ramen & Asiatische Küche">
+  <meta property="og:description" content="Feinste Sushi-Kreationen, aromatische Ramen und asiatische Spezialitäten im Herzen von Ludwigsburg.">
+  <meta property="og:image" content="assets/images/sushi-platter.webp">
+  <link rel="icon" href="assets/logo/hannayuki-logo-light.png">
+  <link rel="preload" href="assets/images/sushi-platter.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Hannayuki Ludwigsburg",
+    "servesCuisine": ["Japanisch", "Sushi", "Ramen", "Asiatisch"],
+    "image": "assets/images/sushi-platter.webp",
+    "email": "Hannayukirestaurant@gmail.com",
+    "telephone": "+49 152 28560316",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Holzmarkt 3",
+      "postalCode": "71634",
+      "addressLocality": "Ludwigsburg",
+      "addressCountry": "DE"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "10:30",
+      "closes": "23:00"
+    }]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar">
+    <div class="top-bar-container">
+      <span class="top-bar-item"><span class="top-dot"></span> Täglich geöffnet: 10:30 – 23:00 Uhr</span>
+      <span class="top-bar-divider">•</span>
+      <span class="top-bar-item">📍 Holzmarkt 3, 71634 Ludwigsburg</span>
+      <span class="top-bar-divider">•</span>
+      <a class="top-bar-link" href="https://wa.me/4915228560316" target="_blank" rel="noopener">
+        <svg class="icon-inline" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.18 8.18 0 01-5.82 2.41c-1.46 0-2.89-.39-4.14-1.12l-.3-.18-3.08.81.82-3-.19-.31a8.18 8.18 0 01-1.26-4.45c0-4.54 3.7-8.24 8.25-8.24z"/></svg>
+        WhatsApp Bestell- &amp; Reservierungshotline: <strong>+49 152 28560316</strong>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#startseite" aria-label="Hannayuki Startseite">
+      <img src="assets/logo/hannayuki-logo-light.png" alt="Hannayuki Crest" class="brand-crest">
+      <div class="brand-text">
+        <span class="brand-name">HANNAYUKI</span>
+        <span class="brand-sub">Ludwigsburg</span>
+      </div>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Hauptnavigation">
+      <a href="#startseite">Startseite</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#spezialitaeten">Spezialitäten</a>
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#reservierung">Tisch reservieren</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Header Cart Trigger -->
+      <button class="header-cart-btn" id="headerCartBtn" type="button" aria-label="Warenkorb öffnen">
+        <span class="cart-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge" id="cartBadgeHeader">0</span>
+        </span>
+        <span class="cart-btn-label">Warenkorb</span>
+      </button>
+
+      <!-- Reserve CTA -->
+      <a class="button button-gold header-reserve" href="#reservierung">Tisch reservieren</a>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-brand">
+        <img src="assets/logo/hannayuki-logo-light.png" alt="Hannayuki" class="mobile-brand-logo">
+        <span class="mobile-brand-name">HANNAYUKI</span>
+        <span class="mobile-brand-tag">Sushi • Ramen • Asiatische Küche</span>
+      </div>
+      <nav aria-label="Mobile Navigation">
+        <a href="#startseite">Startseite</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#spezialitaeten">Spezialitäten</a>
+        <a href="#speisekarte">Speisekarte &amp; Bestellen</a>
+        <a href="#galerie">Bildergalerie</a>
+        <a href="#reservierung">Tisch reservieren</a>
+        <a href="#kontakt">Kontakt &amp; Anfahrt</a>
+      </nav>
+      <div class="mobile-menu-actions">
+        <a class="button button-gold button-full" href="#reservierung">📅 Tisch reservieren</a>
+        <button class="button button-outline button-full" id="mobileCartTrigger" type="button">
+          🛒 Warenkorb ansehen (<span id="cartBadgeMobileMenu">0</span>)
+        </button>
+      </div>
+      <div class="mobile-menu-contact">
+        <p>Holzmarkt 3, 71634 Ludwigsburg</p>
+        <p>Täglich 10:30 – 23:00 Uhr</p>
+        <p><a href="https://wa.me/4915228560316" target="_blank" rel="noopener">WhatsApp: +49 152 28560316</a></p>
+      </div>
+    </div>
+  </div>
+
+  <main id="hauptinhalt">
+    <!-- Hero Section -->
+    <section class="hero" id="startseite" aria-labelledby="heroTitle">
+      <div class="hero-media" aria-hidden="true">
+        <img src="assets/images/sushi-platter.webp" alt="Hannayuki Sushi & Ramen" width="1156" height="1419" fetchpriority="high">
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      
+      <!-- Gentle Falling Sakura Petals -->
+      <div class="petals-container" aria-hidden="true">
+        <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+      </div>
+
+      <div class="hero-container">
+        <!-- Elegant Round Crest Emblem -->
+        <div class="hero-emblem-wrap">
+          <div class="hero-emblem">
+            <img src="assets/logo/hannayuki-logo-light.png" alt="Hannayuki Crest" class="hero-crest-img">
+          </div>
+        </div>
+
+        <p class="hero-kicker">LUDWIGSBURG • JAPANISCHE ÄSTHETIK • ASIATISCHE KÜCHE</p>
+        
+        <h1 id="heroTitle" class="hero-title">
+          HANNAYUKI
+          <span class="hero-title-sub">Restaurant &amp; Sushi Bar</span>
+        </h1>
+
+        <p class="hero-desc">
+          Authentisches japanisches Sushi- &amp; Ramen-Erlebnis im Herzen von Ludwigsburg. Frisch gerollt, meisterhaft abgeschmeckt und mit Leidenschaft serviert.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-gold hero-cta-btn" href="#reservierung">
+            <span class="btn-icon">📅</span>
+            <span>Tisch reservieren</span>
+          </a>
+          <a class="button button-glass hero-cta-btn" href="#speisekarte">
+            <span class="btn-icon">🛒</span>
+            <span>Online bestellen</span>
+          </a>
+          <button class="button button-outline hero-cta-btn" id="heroShowPdf" type="button">
+            <span class="btn-icon">📖</span>
+            <span>Speisekarte (PDF)</span>
+          </button>
+        </div>
+
+        <!-- Floating Info Badges Ribbon -->
+        <div class="hero-pills" role="group" aria-label="Wichtigste Informationen">
+          <div class="info-pill">
+            <span class="pill-icon">🍣</span>
+            <div><strong>Sushi &amp; Ramen</strong><span>Frische Spezialitäten</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pill-icon">📍</span>
+            <div><strong>Holzmarkt 3</strong><span>71634 Ludwigsburg</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pill-icon">⏰</span>
+            <div><strong>10:30 – 23:00 Uhr</strong><span>Montag bis Sonntag</span></div>
+          </div>
+          <a class="info-pill info-pill-link" href="https://wa.me/4915228560316" target="_blank" rel="noopener">
+            <span class="pill-icon">💬</span>
+            <div><strong>WhatsApp Direkt</strong><span>+49 152 28560316</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="ueber-uns">
+      <div class="about-container">
+        <div class="about-image-wrap reveal">
+          <div class="image-frame">
+            <img src="assets/images/sushi-selection.webp" alt="Frisch zubereitete Sushi-Auswahl bei Hannayuki" width="1125" height="1457" loading="lazy">
+          </div>
+          <div class="about-badge">
+            <span class="badge-num">100%</span>
+            <span class="badge-text">Frische Zutaten &amp; Handwerkskunst</span>
+          </div>
+        </div>
+
+        <div class="about-copy reveal">
+          <span class="eyebrow">HANNAYUKI LUDWIGSBURG</span>
+          <h2>Die Kunst asiatischer Gaumenfreuden</h2>
+          <p class="lead">Japanische Präzision trifft auf die unverwechselbaren Aromen Asiens.</p>
+          <p>
+            Im Herzen von Ludwigsburg, am malerischen Holzmarkt, verbindet Hannayuki die feine Schnittkunst der japanischen Sushi-Tradition mit aromatischen Ramen-Brühen und ausgewählten Spezialitäten der asiatischen Fusionsküche.
+          </p>
+          <p>
+            Jedes Gericht wird frisch und mit höchstem Respekt vor der Zutat zubereitet: vom schottischen Lachs über butterweichen Thunfisch bis hin zu knusprigen Gyozas und wärmenden Nudelsuppen.
+          </p>
+
+          <div class="about-highlights">
+            <div class="about-highlight-item">
+              <span class="highlight-icon">🥢</span>
+              <div>
+                <strong>Tagesfrische Zubereitung</strong>
+                <p>Nigiri, Maki &amp; Rolls frisch nach Ihrer Bestellung gerollt.</p>
+              </div>
+            </div>
+            <div class="about-highlight-item">
+              <span class="highlight-icon">🍲</span>
+              <div>
+                <strong>Stundenlang gekochte Brühen</strong>
+                <p>Kräftige Sesam- &amp; Miso-Brühen mit Chashu und frischen Nudeln.</p>
+              </div>
+            </div>
+            <div class="about-highlight-item">
+              <span class="highlight-icon">🏮</span>
+              <div>
+                <strong>Entspannte Gastfreundschaft</strong>
+                <p>Stilvolles Ambiente für gemeinsame Abende und genussvolle Pausen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-cta-row">
+            <a class="button button-gold" href="#reservierung">Tisch reservieren</a>
+            <a class="button button-outline" href="#speisekarte">Zur Speisekarte</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specialties Showcase -->
+    <section class="section specialties" id="spezialitaeten" aria-labelledby="specialtiesTitle">
+      <div class="specialties-container">
+        <div class="section-heading text-center reveal">
+          <span class="eyebrow">KULINARISCHE HIGHLIGHTS</span>
+          <h2 id="specialtiesTitle">Unsere Spezialitäten</h2>
+          <p>Von handgerollten Sushi-Meisterwerken bis zu dampfenden Ramen-Schalen: Entdecken Sie die Vielfalt unserer Karte.</p>
+        </div>
+
+        <div class="specialty-grid">
+          <article class="specialty-card specialty-large reveal" data-category="Sushi Platten">
+            <img src="assets/images/sushi-platter.webp" alt="Sushi und Sashimi Platte" width="1156" height="1419" loading="lazy">
+            <div class="specialty-overlay">
+              <span class="specialty-tag">Empfehlung des Hauses</span>
+              <h3>Sushi &amp; Sashimi Platten</h3>
+              <p>Präzise geschnitten, tagesfrischer Fisch und fein garnierte Rollen für höchsten Genuss.</p>
+              <button class="specialty-filter-btn" type="button" data-filter-cat="Sushi Platten">In der Karte ansehen →</button>
+            </div>
+          </article>
+
+          <article class="specialty-card reveal" data-category="Premium Rolls">
+            <img src="assets/images/sushi-selection.webp" alt="Premium Sushi Rolls" width="1125" height="1457" loading="lazy">
+            <div class="specialty-overlay">
+              <span class="specialty-tag">Beliebt</span>
+              <h3>Premium &amp; Special Rolls</h3>
+              <p>Flambierter Lachs, cremig-würzige Saucen und knusprige Tempura-Garnelen.</p>
+              <button class="specialty-filter-btn" type="button" data-filter-cat="Premium Rolls">In der Karte ansehen →</button>
+            </div>
+          </article>
+
+          <article class="specialty-card specialty-tall reveal" data-category="Ramen & Pho">
+            <img src="assets/images/hannayuki-collage-01.webp" alt="Ramen und Pho Schalen" width="1024" height="1280" loading="lazy">
+            <div class="specialty-overlay">
+              <span class="specialty-tag">Herzerwärmend</span>
+              <h3>Aromatische Ramen &amp; Pho</h3>
+              <p>Würzige Brühen, zarter Schweinebauch (Chashu), Ajitama-Ei und frische Kräuter.</p>
+              <button class="specialty-filter-btn" type="button" data-filter-cat="Ramen & Pho">In der Karte ansehen →</button>
+            </div>
+          </article>
+
+          <article class="specialty-card reveal" data-category="Hauptgerichte">
+            <img src="assets/images/salmon-teriyaki.webp" alt="Lachs Teriyaki mit Reis" width="1144" height="1433" loading="lazy">
+            <div class="specialty-overlay">
+              <span class="specialty-tag">Wok &amp; Grill</span>
+              <h3>Asiatische Hauptgerichte</h3>
+              <p>Knuspriger Lachs Teriyaki, gebratene Ente, Currys und frisches Wok-Gemüse.</p>
+              <button class="specialty-filter-btn" type="button" data-filter-cat="Hauptgerichte">In der Karte ansehen →</button>
+            </div>
+          </article>
+
+          <article class="specialty-card reveal" data-category="Vorspeisen">
+            <img src="assets/images/gyoza-and-salmon.webp" alt="Gyoza und Vorspeisen" width="1146" height="1431" loading="lazy">
+            <div class="specialty-overlay">
+              <span class="specialty-tag">Ideal zum Teilen</span>
+              <h3>Gyoza &amp; Vorspeisen</h3>
+              <p>Goldbraun angebratene Teigtaschen, Edamame, Yakitori-Spieße und Frühlingsrollen.</p>
+              <button class="specialty-filter-btn" type="button" data-filter-cat="Vorspeisen">In der Karte ansehen →</button>
+            </div>
+          </article>
+
+          <article class="specialty-card specialty-wide reveal" data-category="Signature Drinks">
+            <img src="assets/images/signature-drink.webp" alt="Fruchtiger Signature Drink" width="1131" height="1450" loading="lazy">
+            <div class="specialty-overlay">
+              <span class="specialty-tag">Hausgemacht</span>
+              <h3>Signature Drinks &amp; Tees</h3>
+              <p>Fruchtige Eistees, asiatische Limonaden, Sake und erfrischende Cocktails.</p>
+              <button class="specialty-filter-btn" type="button" data-filter-cat="Signature Drinks">In der Karte ansehen →</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu & Ordering Section (Speisekarte & WhatsApp Cart) -->
+    <section class="section menu-section" id="speisekarte" aria-labelledby="menuTitle">
+      <div class="menu-container">
+        <div class="menu-intro text-center reveal">
+          <span class="eyebrow">ORIGINALKARTE • HANNAYUKI LUDWIGSBURG</span>
+          <h2 id="menuTitle">Speisekarte &amp; Online-Bestellung</h2>
+          <p>
+            Wählen Sie Ihre Lieblingsgerichte aus und legen Sie sie in den Warenkorb. Sie können Ihre Bestellung ganz bequem und direkt per <strong>WhatsApp</strong> an unser Team senden!
+          </p>
+          <div class="menu-header-actions">
+            <button class="button button-gold" id="openCartFromMenu" type="button">
+              🛒 Warenkorb öffnen (<span id="cartCountMenuBtn">0</span>)
+            </button>
+            <button class="button button-glass" id="showPdf" type="button">
+              📖 Original-Speisekarte als PDF
+            </button>
+            <a class="button button-outline" href="assets/menu/hannayuki-speisekarte.pdf" download>
+              ⬇️ PDF herunterladen
+            </a>
+          </div>
+        </div>
+
+        <!-- Sticky / Interactive Category Navigation Pills Bar -->
+        <div class="menu-categories-wrapper reveal">
+          <div class="category-tabs-nav" id="categoryTabsNav" role="tablist" aria-label="Menükategorien">
+            <!-- Populated via script.js -->
+          </div>
+        </div>
+
+        <!-- Toolbar: Search + Quick filters -->
+        <div class="menu-toolbar reveal">
+          <div class="menu-search-box">
+            <span class="search-icon">🔍</span>
+            <input id="menuSearch" type="search" placeholder="Gericht nach Name, Nummer (z. B. 301, R01) oder Zutat suchen..." autocomplete="off">
+            <button id="clearSearch" type="button" class="clear-search-btn" aria-label="Suche leeren" hidden>✕</button>
+          </div>
+          
+          <div class="menu-filter-select-wrap">
+            <label for="categorySelect" class="sr-only">Kategorie auswählen</label>
+            <select id="categorySelect" aria-label="Menükategorie"></select>
+          </div>
+
+          <div class="menu-stats">
+            <span id="menuCount">293 Gerichte</span>
+          </div>
+        </div>
+
+        <!-- Status / Notice note -->
+        <div class="menu-status" id="menuStatus" aria-live="polite"></div>
+
+        <!-- Active Dishes Grid -->
+        <div class="menu-grid" id="menuGrid" aria-live="polite">
+          <!-- Dish cards rendered dynamically via script.js -->
+        </div>
+
+        <!-- Load More Action -->
+        <div class="menu-load-wrap">
+          <button class="button button-gold load-more" id="loadMore" type="button">
+            Weitere Gerichte laden
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PDF Viewer Modal Frame -->
+    <section class="pdf-viewer" id="pdfViewer" hidden aria-label="Vollständige PDF-Speisekarte">
+      <div class="pdf-viewer-header">
+        <div class="pdf-title-wrap">
+          <span class="eyebrow">HANNAYUKI</span>
+          <h2>Originale Speisekarte</h2>
+        </div>
+        <button class="icon-button close-pdf-btn" id="closePdf" type="button" aria-label="PDF schließen">
+          ✕ Schließen
+        </button>
+      </div>
+      <iframe title="Hannayuki Speisekarte als PDF" data-src="assets/menu/hannayuki-speisekarte.pdf#view=FitH" loading="lazy"></iframe>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery-section" id="galerie" aria-labelledby="galleryTitle">
+      <div class="gallery-container">
+        <div class="section-heading text-center reveal">
+          <span class="eyebrow">IMPRESSIONEN</span>
+          <h2 id="galleryTitle">Bildergalerie</h2>
+          <p>Ein Einblick in unsere Kreationen, Atmosphäre und Frische am Holzmarkt Ludwigsburg.</p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <button class="gallery-item gallery-feature-large" type="button" data-index="0" aria-label="Große Sushi- und Sashimi-Platte vergrößern">
+            <img src="assets/images/sushi-platter.webp" alt="Große Sushi- und Sashimi-Platte" width="1156" height="1419" loading="lazy">
+            <span class="gallery-zoom-icon">🔍</span>
+            <div class="gallery-caption">
+              <span class="gallery-tag">Sushi &amp; Sashimi</span>
+              <h4>Große Meisterplatte</h4>
+            </div>
+          </button>
+
+          <button class="gallery-item gallery-feature-tall" type="button" data-index="1" aria-label="Hausgemachter Signature Drink vergrößern">
+            <img src="assets/images/signature-drink.webp" alt="Hausgemachter Signature Drink mit Früchten" width="1131" height="1450" loading="lazy">
+            <span class="gallery-zoom-icon">🔍</span>
+            <div class="gallery-caption">
+              <span class="gallery-tag">Erfrischung</span>
+              <h4>Signature Drink &amp; Früchte</h4>
+            </div>
+          </button>
+
+          <button class="gallery-item gallery-feature-tall" type="button" data-index="2" aria-label="Nigiri und Maki Auswahl vergrößern">
+            <img src="assets/images/sushi-selection.webp" alt="Auswahl aus Nigiri und Maki" width="1125" height="1457" loading="lazy">
+            <span class="gallery-zoom-icon">🔍</span>
+            <div class="gallery-caption">
+              <span class="gallery-tag">Feine Selektion</span>
+              <h4>Nigiri &amp; Maki Variation</h4>
+            </div>
+          </button>
+
+          <button class="gallery-item gallery-card" type="button" data-index="3" aria-label="Gyoza und Vorspeisen vergrößern">
+            <img src="assets/images/gyoza-and-salmon.webp" alt="Gyoza und Lachsgericht" width="1146" height="1431" loading="lazy">
+            <span class="gallery-zoom-icon">🔍</span>
+            <div class="gallery-caption">
+              <span class="gallery-tag">Vorspeise</span>
+              <h4>Knusprige Gyoza</h4>
+            </div>
+          </button>
+
+          <button class="gallery-item gallery-card" type="button" data-index="4" aria-label="Lachs Teriyaki vergrößern">
+            <img src="assets/images/salmon-teriyaki.webp" alt="Lachs Teriyaki mit Reis und Gemüse" width="1144" height="1433" loading="lazy">
+            <span class="gallery-zoom-icon">🔍</span>
+            <div class="gallery-caption">
+              <span class="gallery-tag">Wok &amp; Grill</span>
+              <h4>Lachs Teriyaki</h4>
+            </div>
+          </button>
+
+          <button class="gallery-item gallery-card" type="button" data-index="5" aria-label="Hannayuki Impressionen vergrößern">
+            <img src="assets/images/hannayuki-collage-01.webp" alt="Hannayuki Speisenauswahl mit Sushi und Getränk" width="1024" height="1280" loading="lazy">
+            <span class="gallery-zoom-icon">🔍</span>
+            <div class="gallery-caption">
+              <span class="gallery-tag">Komposition</span>
+              <h4>Hannayuki Menü I</h4>
+            </div>
+          </button>
+
+          <button class="gallery-item gallery-card" type="button" data-index="6" aria-label="Hannayuki Collage vergrößern">
+            <img src="assets/images/hannayuki-collage-02.webp" alt="Hannayuki Collage mit asiatischen Gerichten" width="1024" height="1280" loading="lazy">
+            <span class="gallery-zoom-icon">🔍</span>
+            <div class="gallery-caption">
+              <span class="gallery-tag">Vielfalt</span>
+              <h4>Hannayuki Menü II</h4>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick WhatsApp Order Callout Banner -->
+    <section class="order-band" aria-labelledby="orderTitle">
+      <div class="order-band-container">
+        <div class="order-band-copy">
+          <span class="order-band-badge">⚡ SCHNELL &amp; UNKOMPLIZIERT</span>
+          <h2 id="orderTitle">Essen auswählen • Per WhatsApp bestellen</h2>
+          <p>
+            Stellen Sie Ihr Lieblingsmenü zusammen. Wir erstellen daraus eine fertige WhatsApp-Nachricht mit allen Details und Gesamtpreis, die Sie direkt absenden können!
+          </p>
+          <div class="order-route">
+            <div class="order-step">
+              <span class="step-num">1</span>
+              <div><strong>Gerichte wählen</strong><span>Aus der Speisekarte</span></div>
+            </div>
+            <div class="order-step-arrow">→</div>
+            <div class="order-step">
+              <span class="step-num">2</span>
+              <div><strong>Warenkorb prüfen</strong><span>Menge &amp; Wünsche anpassen</span></div>
+            </div>
+            <div class="order-step-arrow">→</div>
+            <div class="order-step">
+              <span class="step-num">3</span>
+              <div><strong>Per WhatsApp senden</strong><span>Schnelle Bestätigung erhalten</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="order-band-action">
+          <button class="button button-gold button-large" id="openCartFromBanner" type="button">
+            🛒 Warenkorb ansehen (<span id="cartBadgeBanner">0</span>)
+          </button>
+          <a class="button button-whatsapp button-large" href="https://wa.me/4915228560316" target="_blank" rel="noopener">
+            💬 WhatsApp Chat starten
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table Reservation Section (Tischreservierung per WhatsApp) -->
+    <section class="section reservation" id="reservierung" aria-labelledby="reservationTitle">
+      <div class="reservation-container">
+        <div class="reservation-copy reveal">
+          <span class="eyebrow">ONLINE TISCHRESERVIERUNG</span>
+          <h2 id="reservationTitle">Tisch reservieren</h2>
+          <p class="lead">Erleben Sie einen unvergesslichen Abend im Hannayuki Ludwigsburg.</p>
+          <p>
+            Teilen Sie uns Ihren Wunschtermin, die Personenanzahl und eventuelle Vorlieben mit. Ihre Anfrage wird automatisch formatiert und direkt an unseren <strong>WhatsApp-Service</strong> übergeben, wo wir sie umgehend bestätigen.
+          </p>
+
+          <div class="reservation-card-info">
+            <div class="res-info-row">
+              <span class="res-icon">⏰</span>
+              <div>
+                <strong>Öffnungszeiten</strong>
+                <p>Montag bis Sonntag: 10:30 – 23:00 Uhr durchgehend</p>
+              </div>
+            </div>
+            <div class="res-info-row">
+              <span class="res-icon">📍</span>
+              <div>
+                <strong>Standort</strong>
+                <p>Holzmarkt 3, 71634 Ludwigsburg (Zentral am Marktplatz)</p>
+              </div>
+            </div>
+            <div class="res-info-row">
+              <span class="res-icon">📞</span>
+              <div>
+                <strong>Telefon / WhatsApp Hotline</strong>
+                <p><a href="https://wa.me/4915228560316" target="_blank" rel="noopener">+49 152 28560316</a></p>
+              </div>
+            </div>
+            <div class="res-info-row">
+              <span class="res-icon">✉️</span>
+              <div>
+                <strong>E-Mail Anfragen</strong>
+                <p><a href="mailto:Hannayukirestaurant@gmail.com">Hannayukirestaurant@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="reservation-form reveal" id="reservationForm" novalidate>
+          <div class="reservation-form-head field-full">
+            <h3>Ihre Reservierungsanfrage</h3>
+            <p>Alle Angaben werden direkt in Ihre WhatsApp-Anfrage übernommen.</p>
+          </div>
+
+          <!-- Quick Guest Selector -->
+          <div class="field-full">
+            <label>Personenanzahl auswählen</label>
+            <div class="guest-selector" id="guestQuickSelect">
+              <button type="button" class="guest-pill" data-guests="1">1 Person</button>
+              <button type="button" class="guest-pill active" data-guests="2">2 Personen</button>
+              <button type="button" class="guest-pill" data-guests="3">3 Personen</button>
+              <button type="button" class="guest-pill" data-guests="4">4 Personen</button>
+              <button type="button" class="guest-pill" data-guests="5">5 Personen</button>
+              <button type="button" class="guest-pill" data-guests="6">6+ Personen</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="reserveGuests">Genaue Anzahl Gäste *</label>
+            <input id="reserveGuests" name="guests" type="number" min="1" max="50" value="2" required>
+            <small></small>
+          </div>
+
+          <div class="field">
+            <label for="reserveDate">Datum *</label>
+            <input id="reserveDate" name="date" type="date" required>
+            <small></small>
+          </div>
+
+          <div class="field">
+            <label for="reserveTime">Uhrzeit (10:30 – 22:30 Uhr) *</label>
+            <input id="reserveTime" name="time" type="time" min="10:30" max="22:30" value="18:30" required>
+            <small></small>
+          </div>
+
+          <div class="field">
+            <label for="reserveArea">Sitzbereich</label>
+            <select id="reserveArea" name="area">
+              <option value="Innenbereich">🏮 Gemütlicher Innenbereich</option>
+              <option value="Terrasse / Außen">🌿 Terrasse / Außenbereich</option>
+              <option value="Sushi-Theke">🍣 Nahe Sushi-Theke</option>
+              <option value="Beliebig / Bester freier Tisch" selected>✨ Beliebig / Bester freier Tisch</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="reserveName">Ihr Name *</label>
+            <input id="reserveName" name="name" type="text" autocomplete="name" placeholder="z. B. Max Mustermann" required>
+            <small></small>
+          </div>
+
+          <div class="field">
+            <label for="reservePhone">Telefonnummer (WhatsApp) *</label>
+            <input id="reservePhone" name="phone" type="tel" autocomplete="tel" placeholder="+49 ..." required>
+            <small></small>
+          </div>
+
+          <div class="field field-full">
+            <label for="reserveEmail">E-Mail Adresse (optional)</label>
+            <input id="reserveEmail" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de">
+            <small></small>
+          </div>
+
+          <div class="field field-full">
+            <label for="reserveNotes">Besondere Wünsche oder Anlass (optional)</label>
+            <textarea id="reserveNotes" name="notes" rows="3" placeholder="z. B. Geburtstag, Hochzeitstag, Kinderstuhl erwünscht, ruhiger Tisch..."></textarea>
+            <small></small>
+          </div>
+
+          <div class="form-actions field-full">
+            <button class="button button-whatsapp button-large button-full" type="submit">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.18 8.18 0 01-5.82 2.41c-1.46 0-2.89-.39-4.14-1.12l-.3-.18-3.08.81.82-3-.19-.31a8.18 8.18 0 01-1.26-4.45c0-4.54 3.7-8.24 8.25-8.24z"/></svg>
+              <span>Tisch per WhatsApp anfragen</span>
+            </button>
+            <button class="button button-ghost button-full" type="button" id="copyReservationBtn">
+              📋 Reservierungstext kopieren
+            </button>
+            <p class="form-hint">
+              Nach dem Absenden öffnet sich WhatsApp mit der vorformulierten Reservierungsanfrage. Hannayuki bestätigt Ihre Reservierung anschließend direkt im Chat.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section class="contact" id="kontakt" aria-labelledby="contactTitle">
+      <div class="contact-panel reveal">
+        <span class="eyebrow">ANFAHRT &amp; KONTAKT</span>
+        <h2 id="contactTitle">Besuchen Sie uns am Holzmarkt</h2>
+        
+        <address class="contact-address">
+          <strong>Hannayuki Ludwigsburg</strong><br>
+          Holzmarkt 3<br>
+          71634 Ludwigsburg<br>
+          Deutschland
+        </address>
+
+        <div class="contact-grid-info">
+          <div class="contact-item">
+            <span class="contact-item-label">Öffnungszeiten</span>
+            <span class="contact-item-val">Montag – Sonntag: 10:30 – 23:00 Uhr</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">WhatsApp &amp; Telefon</span>
+            <span class="contact-item-val">
+              <a href="https://wa.me/4915228560316" target="_blank" rel="noopener">+49 152 28560316</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">E-Mail</span>
+            <span class="contact-item-val">
+              <a href="mailto:Hannayukirestaurant@gmail.com">Hannayukirestaurant@gmail.com</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-actions">
+          <a class="button button-gold" href="https://www.google.com/maps/dir/?api=1&destination=Holzmarkt+3%2C+71634+Ludwigsburg%2C+Deutschland" target="_blank" rel="noopener">
+            🗺️ Route auf Google Maps planen
+          </a>
+          <a class="button button-whatsapp" href="https://wa.me/4915228560316" target="_blank" rel="noopener">
+            💬 WhatsApp Nachricht senden
+          </a>
+        </div>
+      </div>
+
+      <div class="map-wrap reveal">
+        <iframe title="Standort von Hannayuki Ludwigsburg" src="https://www.google.com/maps?q=Holzmarkt+3,+71634+Ludwigsburg,+Deutschland&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="assets/logo/hannayuki-logo-light.png" alt="Hannayuki" class="footer-logo" loading="lazy">
+        <span class="footer-brand-title">HANNAYUKI</span>
+        <p>Sushi • Ramen • Asiatische Fusionsküche im Zentrum von Ludwigsburg.</p>
+        <div class="footer-badges">
+          <span>🍣 Handgerolltes Sushi</span>
+          <span>🍲 Frische Ramen</span>
+          <span>🌱 Vegane Optionen</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Adresse &amp; Zeiten</h3>
+        <p>Holzmarkt 3<br>71634 Ludwigsburg<br>Deutschland</p>
+        <p class="footer-time"><strong>Täglich:</strong> 10:30 – 23:00 Uhr</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Bestellen &amp; Kontakt</h3>
+        <p>
+          <a href="https://wa.me/4915228560316" target="_blank" rel="noopener" class="footer-wa-link">
+            💬 WhatsApp: +49 152 28560316
+          </a>
+        </p>
+        <p>
+          <a href="mailto:Hannayukirestaurant@gmail.com">Hannayukirestaurant@gmail.com</a>
+        </p>
+        <p><a href="#reservierung">Online Tisch reservieren →</a></p>
+        <p><a href="#speisekarte">Speisekarte ansehen →</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Rechtliches</h3>
+        <p>
+          <button class="footer-link legal-trigger" type="button" data-legal="impressum">Impressum</button>
+          <br>
+          <button class="footer-link legal-trigger" type="button" data-legal="datenschutz">Datenschutz</button>
+        </p>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Hannayuki Ludwigsburg. Alle Rechte vorbehalten.</p>
+        <p>Das Urheberrecht liegt bei <strong style="color: var(--gold);">HoangCaster</strong> | Gestaltet &amp; entwickelt von <strong>HoangCaster</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Sticky Action Buttons -->
+  <div class="floating-actions" id="floatingActions">
+    <!-- Floating Direct WhatsApp Chat Button -->
+    <a class="floating-wa-btn" href="https://wa.me/4915228560316" target="_blank" rel="noopener" aria-label="Direkt auf WhatsApp chatten">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.18 8.18 0 01-5.82 2.41c-1.46 0-2.89-.39-4.14-1.12l-.3-.18-3.08.81.82-3-.19-.31a8.18 8.18 0 01-1.26-4.45c0-4.54 3.7-8.24 8.25-8.24z"/></svg>
+      <span class="floating-wa-label">WhatsApp</span>
+    </a>
+
+    <!-- Floating Sticky Cart Trigger Pill -->
+    <button class="floating-cart" id="openCartFloating" type="button" aria-label="Warenkorb öffnen">
+      <span class="floating-cart-icon">🛒</span>
+      <span class="floating-cart-text">
+        <span class="floating-cart-title">Warenkorb</span>
+        <span class="floating-cart-total" id="cartTotalFloating">0,00 €</span>
+      </span>
+      <span class="floating-cart-badge" id="cartBadgeFloating">0</span>
+    </button>
+  </div>
+
+  <!-- Shopping Cart Slide-out Drawer (Giỏ hàng & Đặt món về WhatsApp) -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-labelledby="cartTitle" inert>
+    <div class="cart-header">
+      <div class="cart-header-title">
+        <span class="eyebrow">HANNAYUKI LUDWIGSBURG</span>
+        <h2 id="cartTitle">Ihre Bestellung</h2>
+      </div>
+      <button class="icon-button close-cart-btn" id="closeCart" type="button" aria-label="Warenkorb schließen">
+        ✕
+      </button>
+    </div>
+
+    <div class="cart-body">
+      <!-- Order Type Selector (Abholung / Vor Ort / Lieferung) -->
+      <div class="order-type-picker">
+        <label class="order-type-label">Bestellart wählen:</label>
+        <div class="order-type-options" role="radiogroup" aria-label="Bestellart">
+          <button type="button" class="order-type-btn active" data-type="Abholung">
+            <span class="type-icon">🥡</span>
+            <strong>Abholung</strong>
+            <small>Im Restaurant</small>
+          </button>
+          <button type="button" class="order-type-btn" data-type="Vor Ort">
+            <span class="type-icon">🥢</span>
+            <strong>Vor Ort</strong>
+            <small>Am Tisch speisen</small>
+          </button>
+          <button type="button" class="order-type-btn" data-type="Lieferung">
+            <span class="type-icon">🛵</span>
+            <strong>Lieferung</strong>
+            <small>Auf Anfrage</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Items List -->
+      <div class="cart-items-wrapper">
+        <div class="cart-items-header">
+          <span>Ausgewählte Gerichte</span>
+          <button type="button" class="cart-clear-btn" id="clearCartBtn" title="Warenkorb leeren">Alles entfernen</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+          <!-- Rendered dynamically via script.js -->
+        </div>
+      </div>
+
+      <!-- Cart Subtotal / Total -->
+      <div class="cart-summary-box">
+        <div class="cart-summary-row">
+          <span>Anzahl Positionen:</span>
+          <span id="cartSummaryCount">0 Artikel</span>
+        </div>
+        <div class="cart-summary-row total-row">
+          <strong>Gesamtbetrag:</strong>
+          <strong class="cart-total-price" id="cartTotal">0,00 €</strong>
+        </div>
+      </div>
+
+      <!-- Customer & Delivery Information Form -->
+      <form id="orderForm" class="order-checkout-form" novalidate>
+        <div class="checkout-heading">
+          <h3>Kontaktdaten für WhatsApp</h3>
+          <p>Für Rückfragen und Bestätigung Ihrer Bestellung.</p>
+        </div>
+
+        <div class="field">
+          <label for="orderName">Ihr Name *</label>
+          <input id="orderName" name="name" type="text" autocomplete="name" placeholder="z. B. Kim Nguyen" required>
+          <small></small>
+        </div>
+
+        <div class="field">
+          <label for="orderPhone">Telefon / WhatsApp *</label>
+          <input id="orderPhone" name="phone" type="tel" autocomplete="tel" placeholder="+49 ..." required>
+          <small></small>
+        </div>
+
+        <!-- Dynamic field: Table number if Vor Ort is selected -->
+        <div class="field" id="fieldTableNumber" hidden>
+          <label for="orderTableNumber">Tischnummer (falls bekannt)</label>
+          <input id="orderTableNumber" name="table" type="text" placeholder="z. B. Tisch 4">
+          <small></small>
+        </div>
+
+        <!-- Dynamic field: Delivery address if Lieferung is selected -->
+        <div class="field" id="fieldAddress" hidden>
+          <label for="orderAddress">Lieferadresse *</label>
+          <input id="orderAddress" name="address" type="text" placeholder="Straße, Hausnr., PLZ, Stadt">
+          <small></small>
+        </div>
+
+        <div class="field">
+          <label for="orderTime">Wunschzeit</label>
+          <select id="orderTime" name="time">
+            <option value="Schnellstmöglich (ca. 20-35 Min)">⚡ Schnellstmöglich (ca. 20-35 Min)</option>
+            <option value="In 45 Minuten">In 45 Minuten</option>
+            <option value="In 60 Minuten">In 1 Stunde</option>
+            <option value="Zu einer bestimmten Uhrzeit">Zu bestimmter Uhrzeit (in Notizen angeben)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="orderNotes">Besondere Wünsche zur Zubereitung</label>
+          <textarea id="orderNotes" name="notes" rows="2" placeholder="z. B. scharf, ohne Koriander, extra Sojasauce, Stäbchen beilegen..."></textarea>
+        </div>
+
+        <div class="checkout-actions">
+          <button class="button button-whatsapp button-full button-large" type="submit" id="submitOrderBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.18 8.18 0 01-5.82 2.41c-1.46 0-2.89-.39-4.14-1.12l-.3-.18-3.08.81.82-3-.19-.31a8.18 8.18 0 01-1.26-4.45c0-4.54 3.7-8.24 8.25-8.24z"/></svg>
+            <span>Bestellung per WhatsApp senden</span>
+          </button>
+          
+          <button class="button button-ghost button-full" type="button" id="copyOrderBtn">
+            📋 Bestelltext in Zwischenablage kopieren
+          </button>
+
+          <p class="form-hint text-center">
+            🔒 Die Bestellung wird erst verbindlich, nachdem Sie die vorgefertigte Nachricht in WhatsApp an Hannayuki abgesendet haben.
+          </p>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Drawer Backdrop -->
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+  <!-- Lightbox Gallery Modal -->
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox-close" type="button" aria-label="Galerie schließen">✕</button>
+    <button class="lightbox-prev" type="button" aria-label="Vorheriges Bild">‹</button>
+    <figure>
+      <img src="assets/images/hannayuki-collage-01.webp" alt="Hannayuki Speisenauswahl">
+      <figcaption></figcaption>
+    </figure>
+    <button class="lightbox-next" type="button" aria-label="Nächstes Bild">›</button>
+  </dialog>
+
+  <!-- Legal / Privacy Dialog -->
+  <dialog class="legal-dialog" id="legalDialog">
+    <button class="legal-close" type="button">✕ Schließen</button>
+    <div id="legalContent"></div>
+  </dialog>
+
+  <!-- Interactive Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="data/menu.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
