@@ -386,17 +386,33 @@
     </section>
 
     <!-- PDF Viewer Modal Frame -->
-    <section class="pdf-viewer" id="pdfViewer" hidden aria-label="Vollständige PDF-Speisekarte">
+    <section class="pdf-viewer" id="pdfViewer" hidden role="dialog" aria-modal="true" aria-labelledby="pdfViewerTitle">
       <div class="pdf-viewer-header">
         <div class="pdf-title-wrap">
           <span class="eyebrow">HANNAYUKI</span>
-          <h2>Originale Speisekarte</h2>
+          <h2 id="pdfViewerTitle">Originale Speisekarte</h2>
         </div>
+        <a class="pdf-open-direct" href="assets/menu/hannayuki-speisekarte.pdf" target="_blank" rel="noopener">
+          PDF direkt öffnen
+        </a>
         <button class="icon-button close-pdf-btn" id="closePdf" type="button" aria-label="PDF schließen">
           ✕ Schließen
         </button>
       </div>
-      <iframe title="Hannayuki Speisekarte als PDF" data-src="assets/menu/hannayuki-speisekarte.pdf#view=FitH" loading="lazy"></iframe>
+      <iframe class="pdf-desktop-frame" title="Hannayuki Speisekarte als PDF" data-src="assets/menu/hannayuki-speisekarte.pdf#view=FitH" loading="lazy"></iframe>
+      <div class="pdf-mobile-reader" id="pdfMobileReader" hidden>
+        <div class="pdf-reader-status" id="pdfReaderStatus" role="status" aria-live="polite">
+          <span class="pdf-loading-bar" aria-hidden="true"></span>
+          <strong>Speisekarte wird geladen...</strong>
+          <span>Die Seiten werden nacheinander angezeigt.</span>
+        </div>
+        <div class="pdf-pages" id="pdfPages"></div>
+        <div class="pdf-reader-fallback" id="pdfReaderFallback" hidden>
+          <strong>Die Vorschau konnte nicht geladen werden.</strong>
+          <span>Sie können die Speisekarte direkt im Browser öffnen.</span>
+          <a class="button button-gold" href="assets/menu/hannayuki-speisekarte.pdf" target="_blank" rel="noopener">PDF öffnen</a>
+        </div>
+      </div>
     </section>
 
     <!-- Gallery Section -->

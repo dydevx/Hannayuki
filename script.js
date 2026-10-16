@@ -789,13 +789,128 @@
   // PDF Viewer Modal
   // ==========================================================================
   const pdfViewer = $("#pdfViewer");
+  const pdfFrame = $(".pdf-desktop-frame", pdfViewer);
+  const pdfMobileReader = $("#pdfMobileReader");
+  const pdfPages = $("#pdfPages");
+  const pdfReaderStatus = $("#pdfReaderStatus");
+  const pdfReaderFallback = $("#pdfReaderFallback");
+  const PDF_URL = "assets/menu/hannayuki-speisekarte.pdf";
+  const PDFJS_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/legacy/build/pdf.min.mjs";
+  const PDFJS_WORKER_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/legacy/build/pdf.worker.min.mjs";
+  const mobilePdfQuery = window.matchMedia("(max-width: 720px)");
+  let pdfLoadPromise;
+  let pdfDocument;
+  let pdfPageObserver;
+  let pdfReturnFocus;
+
+  const useMobilePdfReader = () => mobilePdfQuery.matches || /FBAN|FBAV|Instagram|Messenger|iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  const loadPdfJs = () => {
+    if (pdfLoadPromise) return pdfLoadPromise;
+    pdfLoadPromise = import(PDFJS_URL);
+    return pdfLoadPromise;
+  };
+
+  const renderPdfPage = async (pageElement) => {
+    if (!pdfDocument || pageElement.dataset.state === "rendering" || pageElement.dataset.state === "rendered") return;
+    pageElement.dataset.state = "rendering";
+
+    try {
+      const pageNumber = Number(pageElement.dataset.page);
+      const page = await pdfDocument.getPage(pageNumber);
+      const baseViewport = page.getViewport({ scale: 1 });
+      const cssWidth = Math.max(280, Math.min(pageElement.clientWidth, 900));
+      const outputScale = Math.min(window.devicePixelRatio || 1, 1.5);
+      const viewport = page.getViewport({ scale: (cssWidth / baseViewport.width) * outputScale });
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d", { alpha: false });
+
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      canvas.style.width = `${Math.floor(viewport.width / outputScale)}px`;
+      canvas.style.height = `${Math.floor(viewport.height / outputScale)}px`;
+      pageElement.style.aspectRatio = `${viewport.width} / ${viewport.height}`;
+      pageElement.append(canvas);
+
+      await page.render({ canvasContext: context, viewport }).promise;
+      pageElement.dataset.state = "rendered";
+      pageElement.classList.add("is-rendered");
+      pdfPageObserver?.unobserve(pageElement);
+    } catch (error) {
+      pageElement.querySelector("canvas")?.remove();
+      pageElement.dataset.state = "error";
+      pageElement.dataset.pageLabel = "Seite konnte nicht geladen werden";
+      pdfPageObserver?.unobserve(pageElement);
+    }
+  };
+
+  const buildPdfPages = (pageCount) => {
+    if (!pdfPages || pdfPages.childElementCount) return;
+    const fragment = document.createDocumentFragment();
+
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      const pageElement = document.createElement("article");
+      pageElement.className = "pdf-page";
+      pageElement.dataset.page = String(pageNumber);
+      pageElement.dataset.pageLabel = `Seite ${pageNumber} wird geladen`;
+      pageElement.setAttribute("aria-label", `Seite ${pageNumber} von ${pageCount}`);
+
+      const pageLabel = document.createElement("span");
+      pageLabel.className = "pdf-page-number";
+      pageLabel.textContent = `${pageNumber} / ${pageCount}`;
+      pageElement.append(pageLabel);
+      fragment.append(pageElement);
+    }
+
+    pdfPages.append(fragment);
+    pdfPageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) renderPdfPage(entry.target);
+      });
+    }, { root: pdfMobileReader, rootMargin: "100% 0px", threshold: 0.01 });
+
+    $$(".pdf-page", pdfPages).forEach((pageElement) => pdfPageObserver.observe(pageElement));
+  };
+
+  const initMobilePdfReader = async () => {
+    if (!pdfMobileReader || !pdfReaderStatus || !pdfReaderFallback) return;
+    pdfMobileReader.hidden = false;
+    pdfReaderFallback.hidden = true;
+
+    if (pdfDocument) return;
+    pdfReaderStatus.hidden = false;
+
+    try {
+      const pdfjsLib = await loadPdfJs();
+      pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_URL;
+      pdfDocument = await pdfjsLib.getDocument(PDF_URL).promise;
+      buildPdfPages(pdfDocument.numPages);
+      pdfReaderStatus.hidden = true;
+    } catch (error) {
+      console.error("PDF preview error:", error);
+      pdfReaderStatus.hidden = true;
+      pdfReaderFallback.hidden = false;
+    }
+  };
+
   const setPdfOpen = (open) => {
     if (!pdfViewer) return;
     pdfViewer.hidden = !open;
     document.body.classList.toggle("modal-open", open);
-    const frame = $("iframe", pdfViewer);
-    if (open && frame && !frame.src) {
-      frame.src = frame.dataset.src;
+    if (open) {
+      pdfReturnFocus = document.activeElement;
+      const mobileReaderActive = useMobilePdfReader();
+      pdfViewer.classList.toggle("uses-mobile-reader", mobileReaderActive);
+      if (pdfMobileReader) pdfMobileReader.hidden = !mobileReaderActive;
+      if (mobileReaderActive) {
+        if (pdfFrame) pdfFrame.removeAttribute("src");
+        initMobilePdfReader();
+      } else if (pdfFrame && !pdfFrame.getAttribute("src")) {
+        pdfFrame.src = pdfFrame.dataset.src;
+      }
+      $("#closePdf")?.focus();
+    } else if (pdfReturnFocus instanceof HTMLElement) {
+      pdfReturnFocus.focus();
     }
   };
   $("#showPdf")?.addEventListener("click", () => setPdfOpen(true));

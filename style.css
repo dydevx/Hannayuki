@@ -1487,20 +1487,37 @@ p {
   display: flex;
   flex-direction: column;
   padding: 1.2rem;
+  height: 100vh;
+  height: 100dvh;
 }
 .pdf-viewer[hidden] {
   display: none;
 }
 .pdf-viewer-header {
-  height: 60px;
+  min-height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
   padding-bottom: 0.8rem;
+  flex: 0 0 auto;
+}
+.pdf-title-wrap {
+  margin-right: auto;
 }
 .pdf-title-wrap h2 {
   font-size: 1.6rem;
   margin: 0;
+}
+.pdf-open-direct {
+  color: var(--gold-light);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  white-space: nowrap;
+}
+.pdf-open-direct:hover {
+  color: #fff;
 }
 .close-pdf-btn {
   padding: 0.6rem 1.2rem;
@@ -1515,12 +1532,123 @@ p {
   background: var(--crimson);
   border-color: var(--crimson);
 }
-.pdf-viewer iframe {
+.pdf-desktop-frame {
   flex-grow: 1;
   width: 100%;
+  min-height: 0;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   background: #15181e;
+}
+.pdf-viewer.uses-mobile-reader .pdf-desktop-frame {
+  display: none;
+}
+.pdf-mobile-reader {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  padding: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: #111318;
+}
+.pdf-mobile-reader[hidden],
+.pdf-reader-fallback[hidden],
+.pdf-reader-status[hidden] {
+  display: none;
+}
+.pdf-reader-status,
+.pdf-reader-fallback {
+  width: min(100%, 520px);
+  min-height: 220px;
+  margin: 12vh auto 1rem;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+.pdf-reader-status strong,
+.pdf-reader-fallback strong {
+  color: #fff;
+  font-size: 1rem;
+}
+.pdf-reader-status > span:last-child,
+.pdf-reader-fallback > span {
+  font-size: 0.82rem;
+}
+.pdf-loading-bar {
+  width: min(220px, 70vw);
+  height: 3px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.1);
+}
+.pdf-loading-bar::after {
+  content: "";
+  display: block;
+  width: 45%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gold-gradient);
+  animation: pdf-loading 1.1s ease-in-out infinite alternate;
+}
+@keyframes pdf-loading {
+  from { transform: translateX(-20%); }
+  to { transform: translateX(140%); }
+}
+.pdf-pages {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  display: grid;
+  gap: 0.9rem;
+}
+.pdf-page {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  aspect-ratio: 1 / 1.4142;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f4f4f2;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.pdf-page::before {
+  content: attr(data-page-label);
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  color: #777;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.pdf-page.is-rendered::before {
+  display: none;
+}
+.pdf-page canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+}
+.pdf-page-number {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  z-index: 1;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgba(9, 10, 12, 0.78);
+  color: #fff;
+  font-size: 0.68rem;
+  line-height: 1;
 }
 
 /* ==========================================================================
@@ -2672,6 +2800,42 @@ dialog:not([open]) {
 }
 
 @media (max-width: 720px) {
+  .pdf-viewer {
+    padding: max(0.65rem, env(safe-area-inset-top)) 0.65rem max(0.65rem, env(safe-area-inset-bottom));
+  }
+  .pdf-viewer-header {
+    min-height: 54px;
+    gap: 0.6rem;
+    padding-bottom: 0.65rem;
+  }
+  .pdf-title-wrap .eyebrow {
+    display: none;
+  }
+  .pdf-title-wrap h2 {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 4.2vw, 1.18rem);
+    line-height: 1.15;
+  }
+  .pdf-open-direct {
+    display: none;
+  }
+  .close-pdf-btn {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.78rem;
+  }
+  .pdf-desktop-frame {
+    display: none;
+  }
+  .pdf-mobile-reader {
+    display: block;
+    padding: 0.45rem;
+    border-radius: 10px;
+  }
+  .pdf-page {
+    min-height: 260px;
+    border-radius: 6px;
+  }
+
   .hero-actions {
     flex-direction: column;
     width: 100%;
