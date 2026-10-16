@@ -317,8 +317,8 @@
       const empty = document.createElement("div");
       empty.className = "menu-empty";
       empty.innerHTML = `
-        <p>Keine Gerichte gefunden für <strong>"${escapeHtml(menuSearch ? menuSearch.value : "")}"</strong>.</p>
-        <button class="button button-outline" id="resetFilterBtn" type="button" style="margin-top:1rem;">Alle Gerichte anzeigen</button>
+        <p>Keine passenden Einträge gefunden für <strong>"${escapeHtml(menuSearch ? menuSearch.value : "")}"</strong>.</p>
+        <button class="button button-outline" id="resetFilterBtn" type="button" style="margin-top:1rem;">Gesamte Karte anzeigen</button>
       `;
       menuGrid.append(empty);
       const resetBtn = $("#resetFilterBtn", empty);
@@ -344,7 +344,7 @@
           groupSec.innerHTML = `
             <div class="menu-group-header">
               <h3>${escapeHtml(catName)}</h3>
-              <span class="menu-group-count">${dishes.length} Gerichte</span>
+              <span class="menu-group-count">${dishes.length} Einträge</span>
             </div>
             <div class="menu-group-grid"></div>
           `;
@@ -369,7 +369,7 @@
     }
 
     if (menuCount) {
-      menuCount.textContent = `${allMatches.length} ${allMatches.length === 1 ? "Gericht" : "Gerichte"}`;
+      menuCount.textContent = `${allMatches.length} ${allMatches.length === 1 ? "Position" : "Positionen"}`;
     }
 
     if (menuStatus) {
@@ -855,7 +855,7 @@
       <p><strong>Angaben gemäß § 5 TMG:</strong></p>
       <p>Hannayuki Ludwigsburg<br>Holzmarkt 3<br>71634 Ludwigsburg<br>Deutschland</p>
       <p><strong>Kontakt:</strong><br>WhatsApp / Telefon: +49 152 28560316<br>E-Mail: Hannayukirestaurant@gmail.com</p>
-      <p><strong>Öffnungszeiten:</strong><br>Montag bis Sonntag: 10:30 – 23:00 Uhr</p>
+      <p><strong>Öffnungszeiten:</strong><br>Montag bis Sonntag: 10:30 - 23:00 Uhr</p>
     `,
     datenschutz: `
       <h2>Datenschutzerklärung</h2>

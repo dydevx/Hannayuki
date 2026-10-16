@@ -1,330 +1,430 @@
-/* Quelle: Menu_07.10.2026.pdf. Fehlende Preise sind im Original nicht angegeben. */
+/* Offizielle Speisekarte: "menu hannayuki moi nhat.pdf", 40 Seiten, Stand 25.08.2026. */
 const menuItem = (code, name, category, price, description = "", options = "", allergens = "", page = 0, note = "") => ({
   code: String(code), name, category, price, description, options, allergens, page, note
 });
 
 window.MENU_CATEGORIES = [
-  "Alle", "Nigiri Sushi", "Maki", "Premium Maki", "Futo Maki", "Premium Rolls",
-  "Spezial Rolls", "Frittiertes Sushi", "Sushi Platten", "Vegan & Vegetarisch",
-  "Vorspeisen", "Ramen & Pho", "Hauptgerichte", "Asian Specials",
-  "Seafood & Hanoi Specials", "Curry & Teriyaki", "Getränke", "Signature Drinks"
+  "Alle", "Getränke", "Signature Drinks", "Vorspeisen", "Ramen & Pho",
+  "Hauptgerichte", "Asian Specials", "Seafood & Hanoi Specials", "Curry & Teriyaki",
+  "Nigiri Sushi", "Maki", "Futo Maki", "Premium Rolls", "Frittiertes Sushi",
+  "Sushi Platten", "Vegan & Vegetarisch", "Spezial Rolls"
 ];
 
-window.MENU_DATA = [
-  // Nigiri Sushi, PDF pages 2-3
-  menuItem("301", "Sakana Nigiri", "Nigiri Sushi", 3.20, "Butterfisch", "", "", 3),
-  menuItem("302", "Sakana Avocado Nigiri", "Nigiri Sushi", 3.50, "Butterfisch und Avocado", "", "", 3),
-  menuItem("303", "Sakana Spargel Nigiri", "Nigiri Sushi", 3.50, "Butterfisch und Spargel", "", "", 3),
-  menuItem("304", "Lachs Rucola Nigiri", "Nigiri Sushi", 3.50, "Lachs und Rucola", "", "", 3),
-  menuItem("305", "Lachs Avocado Nigiri", "Nigiri Sushi", 3.50, "Salmon Avocado", "", "", 3),
-  menuItem("306", "Tuna Rucola Nigiri", "Nigiri Sushi", 3.50, "Thunfisch und Rucola", "", "", 3),
-  menuItem("307", "Tuna Avocado Nigiri", "Nigiri Sushi", 3.50, "Thunfisch und Avocado", "", "", 3),
-  menuItem("308", "Lachs Spargel Nigiri", "Nigiri Sushi", 3.50, "Lachs und Spargel", "", "", 3),
-  menuItem("309", "Tuna Spargel Nigiri", "Nigiri Sushi", 3.50, "Thunfisch und Spargel", "", "", 3),
-  menuItem("310", "Salmon Nigiri", "Nigiri Sushi", 3.00, "Lachs", "", "", 3),
-  menuItem("311", "Maguro Nigiri", "Nigiri Sushi", 3.20, "Thunfisch", "", "", 3),
-  menuItem("313", "Sakana Yakinuki Avocado", "Nigiri Sushi", 3.80, "Mit flambiertem Butterfisch und Sauce", "", "", 2),
-  menuItem("314", "Salmon Yakinuki Avocado", "Nigiri Sushi", 3.80, "Mit flambiertem Lachs und Sauce", "", "", 2),
-  menuItem("315", "Tuna Aburi Avocado", "Nigiri Sushi", 3.80, "Mit flambiertem Thunfisch und Sauce", "", "", 2),
-  menuItem("316", "Tuna Aburi Avocado", "Nigiri Sushi", 3.20, "Mit flambiertem Thunfisch und Sauce", "", "", 2, "Doppelter Name mit abweichendem Preis im Original."),
-  menuItem("317", "Unagi Nigiri", "Nigiri Sushi", 3.80, "Aal / Eel", "", "", 2),
-  menuItem("318", "Inari Nigiri", "Nigiri Sushi", 2.80, "Gebratene Tofutasche", "", "", 2),
-  menuItem("319", "Tamago Nigiri", "Nigiri Sushi", 2.80, "Eier", "", "", 2),
-  menuItem("320", "Avocado Nigiri", "Nigiri Sushi", 3.80, "Avocado", "", "", 2),
-  menuItem("321", "Spargel Nigiri", "Nigiri Sushi", 2.80, "Spargel", "", "", 2),
-  menuItem("322", "Surimi Nigiri", "Nigiri Sushi", 2.80, "Surimi", "", "", 2),
+window.MENU_DATA = [];
 
-  // Maki and Premium Maki, PDF pages 5-7
-  menuItem("50", "Sake Maki", "Maki", 5.50, "Schottischer Lachs", "6 Stück", "", 6),
-  menuItem("50a", "Sake Spargel Maki", "Maki", 5.50, "Lachs, Spargel", "6 Stück", "", 6),
-  menuItem("51", "Tekka Maki", "Maki", 5.50, "Thunfisch", "6 Stück", "", 6),
-  menuItem("51a", "Tuna Spargel Maki", "Maki", 5.50, "Thunfisch, Spargel", "6 Stück", "", 6),
-  menuItem("52", "Ebi Maki", "Maki", 5.50, "Garnelen, Sesam", "6 Stück", "", 6),
-  menuItem("53", "Unagi Maki", "Maki", 5.50, "Aal, Sesam", "6 Stück", "", 6),
-  menuItem("54", "Edo Maki", "Maki", 5.50, "Lachs und Avocado", "6 Stück", "", 6),
-  menuItem("54a", "Butterfisch Avocado Maki", "Maki", 5.50, "Butterfisch und Avocado", "6 Stück", "", 6),
-  menuItem("54b", "Butterfisch Rucola Maki", "Maki", 5.50, "Butterfisch und Rucola", "6 Stück", "", 6),
-  menuItem("56", "Ebi Avocado Maki", "Maki", 5.50, "Garnelen und Avocado", "6 Stück", "", 6),
-  menuItem("57", "Gekochter Salmon Maki", "Premium Maki", 5.50, "Frischkäse, Rucola, Mayonnaise", "10 Stück", "", 7),
-  menuItem("58", "Gebratener Tuna Maki", "Premium Maki", 5.50, "Gurken, Frischkäse, Sesam", "10 Stück", "", 7),
-  menuItem("59a", "Rucola Lachs Maki", "Premium Maki", 5.50, "Frischkäse", "10 Stück", "", 7),
-  menuItem("59b", "Rucola Thunfisch Maki", "Premium Maki", 5.50, "Frischkäse", "10 Stück", "", 7),
-  menuItem("59c", "Sakana Maki", "Premium Maki", 5.50, "Butterfisch", "10 Stück", "", 7),
-  menuItem("60", "Avocado Maki", "Premium Maki", 5.50, "Sesam", "10 Stück", "", 7),
-  menuItem("61", "Kappa Maki", "Premium Maki", 5.50, "Gurke", "10 Stück", "", 7),
-  menuItem("62", "Surimi Maki", "Premium Maki", 5.50, "Sesam", "10 Stück", "", 7),
-  menuItem("63", "Tamago Maki", "Premium Maki", 5.50, "Eier", "10 Stück", "", 7),
-  menuItem("64", "Avocado Tofu Maki", "Premium Maki", 5.50, "Avocado und Tofu", "10 Stück", "", 7),
-  menuItem("65", "Rucola Maki", "Premium Maki", 5.50, "Frischkäse", "10 Stück", "", 5),
-  menuItem("66", "Spargel Maki", "Premium Maki", 5.50, "Spargel", "10 Stück", "", 5),
-  menuItem("600", "Spargel Maki", "Premium Maki", 5.50, "Spargel", "10 Stück", "", 5),
-  menuItem("601", "Mango Maki", "Premium Maki", 5.50, "Mango", "10 Stück", "", 5),
-  menuItem("602", "Mozzarella Maki", "Premium Maki", 5.50, "Mozzarella", "10 Stück", "", 5),
-  menuItem("603", "Kräuterseitling Maki", "Premium Maki", 5.50, "Japanische Kräuterseitlinge", "10 Stück", "", 5),
-  menuItem("604", "Frittierter Spargel Maki", "Premium Maki", 5.50, "Frittierter Spargel", "10 Stück", "", 5),
-  menuItem("605", "Vegan Avocado Fry Maki", "Premium Maki", 5.50, "Avocado", "10 Stück", "", 5),
-  menuItem("611", "Vegan Wakame Maki", "Premium Maki", 5.50, "Mit Algensalat und Sesam", "10 Stück", "", 5),
+const addBlock = (category, page, rows) => {
+  rows.trim().split("\n").forEach((row) => {
+    const [code, name, rawPrice, description = "", options = "", allergens = ""] = row.split("|");
+    const price = rawPrice === "" ? null : Number(rawPrice);
+    window.MENU_DATA.push(menuItem(code, name, category, price, description, options, allergens, page));
+  });
+};
 
-  // Futo Maki, PDF page 4
-  menuItem("90", "Futo Salmon", "Futo Maki", 12.50, "Frischkäse, Avocado, Gurken, Lachs, Rucola, Surimi", "5 Stück", "", 4),
-  menuItem("91", "Futo Tuna", "Futo Maki", 12.50, "Frischkäse, Avocado, Gurken, Thunfisch, Rucola, Surimi", "5 Stück", "", 4),
-  menuItem("92", "Futo Ebi", "Futo Maki", 12.50, "Frischkäse, Avocado, Gurken, Eier, Garnelen", "5 Stück", "", 4),
-  menuItem("93", "Futo Ebi Tempura", "Futo Maki", 12.50, "Gebackene Garnelen, Avocado, Surimi, Ei", "5 Stück", "", 4),
-  menuItem("94", "Spezial Futo", "Futo Maki", 12.50, "Thunfisch, Avocado, Gurken, Lachs, Rucola, Frischkäse", "5 Stück", "", 4),
-  menuItem("95", "Futo Deluxe", "Futo Maki", 12.50, "Hähnchenspieße, Avocado, Garnelen, Ei, Surimi, Frischkäse", "5 Stück", "", 4),
-  menuItem("96", "Futo Sakana", "Futo Maki", 12.50, "Butterfisch, Gurken, Spargel, Frischkäse, Surimi", "5 Stück", "", 4),
-  menuItem("97", "Futo Oktopus", "Futo Maki", 12.50, "Oktopus, Avocado, Garnelen, Eier, Surimi, Frischkäse, Spargel", "5 Stück", "", 4),
+addBlock("Getränke", 2, `
+SD1|Cola, Cola Zero, Fanta, Sprite, Mezzo Mix oder Ginger Ale|3.5|Softdrink nach Wahl|0,33 l
+SD2|Mineralwasser|3|Still oder sprudelnd|0,33 l
+SD3|Mineralwasser Flasche|6|Still oder sprudelnd|0,75 l
+G6|Lychee Saft|4|Auch als Schorle erhältlich|0,33 l
+G8|Apfelsaft|4|Auch als Schorle erhältlich|0,33 l
+G9|Mangosaft|4|Auch als Schorle erhältlich|0,33 l
+G14|Maracujasaft|4|Auch als Schorle erhältlich|0,33 l
+G33a|Hefeweizen|4||0,33 l
+G33b|Schönbuch Bier|4||0,33 l
+G35a|Alkoholfreies Bier|4||0,33 l
+G31|Hugo|7|Prosecco, Holunder, Limetten und Minze
+G32|Aperol Spritz|7|Prosecco und Aperol
+G32b|Kumquat Bombe|7|Prosecco, Kumquats, Limetten, Minze, Ingwer und Holunder
+G36|Rotwein|5.7||0,2 l
+G37|Weißwein|5.7||0,2 l
+G39|Weißwein Schorle|4.7
+G40|Rotwein Schorle|4.7
+G41|Roséwein|5.7||0,2 l
+G15|Kazumi Tee|4.5
+G15a|Lemongrass Tee|5|Zitronengras, Ingwer und Honig|Nur im Winter
+SAKE|Sake|6||Warm oder kalt
+MK|Milchkaffee Spezialitäten|6
+`);
 
-  // Premium Rolls, PDF pages 8-15
-  menuItem("67", "Avocado Roll", "Premium Rolls", 12, "Frischkäse, Gurken, Rucola, Lachs, Avocado, Unagi Sauce", "10 Stück", "", 10),
-  menuItem("67a", "Avocado Deluxe", "Premium Rolls", 13, "Panierte Avocado, Gurken, Frischkäse, umwickelt mit Lachs, Tuna, Butterfisch, Garnelen oder Aal", "10 Stück", "", 10),
-  menuItem("68", "Scallops", "Premium Rolls", 16, "Avocado, Spargel, Jakobsmuscheln, Frischkäse, wenig scharf, umwickelt mit Garnelen", "10 Stück", "", 12),
-  menuItem("70", "Alachs Roll", "Premium Rolls", 10, "Lachs, Gurken, Frischkäse, Avocado, Tobiko", "10 Stück", "", 10),
-  menuItem("70a", "Mango Roll", "Premium Rolls", 10, "Frischkäse, Spargel, Gurken, Mango, Butterfisch, Sauce", "10 Stück", "", 10),
-  menuItem("70b", "Kings of Aubergine", "Premium Rolls", 15, "Frischkäse, Avocado, gemischter Fisch, Spargel, Aubergine, Unagi Sauce", "10 Stück", "", 10),
-  menuItem("71", "Thunfisch Roll", "Premium Rolls", 10, "Thunfisch, Frischkäse, Gurken, Avocado, Schnittlauch", "10 Stück", "", 11),
-  menuItem("72", "California Surimi Roll", "Premium Rolls", 10, "Surimi, Frischkäse, Avocado, Gurken, Tobiko", "10 Stück", "", 12),
-  menuItem("72a", "King Onion Roll", "Premium Rolls", 13, "Röstzwiebeln, Frischkäse, Tuna, Butterfisch, Avocado", "10 Stück", "", 12),
-  menuItem("73", "Yakitori Roll", "Premium Rolls", 12, "Gurken, Avocado, Frischkäse, Hähnchenspieße, Unagi Sauce", "10 Stück", "", 12),
-  menuItem("74", "Ebi Tempura Roll", "Premium Rolls", 16, "Knusprige Garnelen, Avocado", "10 Stück", "", 13),
-  menuItem("74a", "Yakinuki Ebi Tempura Roll", "Premium Rolls", 10, "Frittierte Garnelen, Gurken, Käse, flambierter Fisch", "10 Stück", "", 13),
-  menuItem("74b", "Ebi Tempura Avocado Roll", "Premium Rolls", 13, "Frittierte Garnelen, Gurken, Käse, Avocado, Teriyaki", "10 Stück", "", 13),
-  menuItem("74c", "Crazy Tempural", "Premium Rolls", 13, "Panierter Lachs, Tuna oder Butterfisch mit Frischkäse, Spargel, umwickelt mit Avocado und Unagi Sauce", "10 Stück", "", 12),
-  menuItem("74d", "Octopus Deluxe", "Premium Rolls", 12, "Käse, Avocado, Oktopus, Garnelen", "10 Stück", "", 13),
-  menuItem("75", "Salmon Queen Roll", "Premium Rolls", 13, "Gurken, Avocado, Frischkäse, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Oktopus", "10 Stück", "", 11),
-  menuItem("75a", "Sakana Mango Queen Roll", "Premium Rolls", 13, "Gurken, Spargel, Mango, Frischkäse, Butterfisch, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Oktopus", "10 Stück", "", 11),
-  menuItem("75b", "Jakob Sexy", "Premium Rolls", 10, "Spargel, Lachs, Frischkäse, Kräuterseitlinge, umwickelt mit Jakobsmuscheln", "10 Stück", "", 11),
-  menuItem("75c", "Hifi Roll", "Premium Rolls", 15, "Gurken, Frischkäse, Tintenfisch, Spargel, umwickelt mit Lachs und Tuna", "10 Stück", "", 11),
-  menuItem("76", "Tuna Queen Roll", "Premium Rolls", null, "Avocado, Spargel, Frischkäse, Thunfisch, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Oktopus", "10 Stück", "", 9, "Preis im PDF nicht angegeben."),
-  menuItem("76a", "Mozzarella Bombe Roll", "Premium Rolls", null, "Gurken, Mozzarella Tempura, Frischkäse, wenig scharf, umwickelt mit Lachs, Thunfisch, Butterfisch oder Garnelen", "10 Stück", "", 9, "Preis im PDF nicht angegeben."),
-  menuItem("76b", "Aal-Bombe", "Premium Rolls", null, "Avocado, Gurken, Frischkäse, Tobiko, Aal, umwickelt mit Lachs, Tuna oder Butterfisch", "10 Stück", "", 9, "Preis im PDF nicht angegeben."),
-  menuItem("77", "Unagi Tempura", "Premium Rolls", 13, "Frittierte Garnelen, Avocado, Aal, Teriyaki", "10 Stück", "", 13),
-  menuItem("77b", "Unagi Aburi", "Premium Rolls", 15, "Aal, Avocado, Gurken, Spargel, umwickelt mit flambiertem Lachs, Thunfisch oder Butterfisch", "10 Stück", "", 14),
-  menuItem("78", "California Queen Roll", "Premium Rolls", null, "Surimi, Frischkäse, Gurken, Avocado, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal", "10 Stück", "", 9, "Preis im PDF nicht angegeben."),
-  menuItem("78a", "Yakiniku California", "Premium Rolls", 13, "Surimi, Frischkäse, Mango, Gurken, Avocado, umwickelt mit flambiertem Lachs, Thunfisch, Butterfisch oder Aal", "10 Stück", "", 15),
-  menuItem("79", "Rucola Roll", "Premium Rolls", 13, "Frischkäse, Rucola, Gurke, Mango, umwickelt mit Lachs, Thunfisch, Butterfisch oder Garnelen", "10 Stück", "", 8),
-  menuItem("79a", "Kräuterseitlinge Roll", "Premium Rolls", 13, "Frischkäse, japanische Kräuterseitlinge, Spargel, Avocado, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal", "10 Stück", "", 8),
-  menuItem("79b", "Spargel Roll", "Premium Rolls", 13, "Frischkäse, Avocado, Spargel, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal", "10 Stück", "", 8),
-  menuItem("79c", "Zucchini Deluxe", "Premium Rolls", 13, "Zucchini, Gurke, Avocado, Frischkäse, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal", "10 Stück", "", 8),
-  menuItem("80", "Gekochter Lachs Roll", "Premium Rolls", 15, "Frischkäse, Rucola, Gurken, Lachs", "10 Stück", "", 15),
-  menuItem("81", "Surimi Inari Roll", "Premium Rolls", 10, "Surimi, Avocado, Gurken, Rucola, Tofu, Frischkäse", "10 Stück", "", 15),
-  menuItem("82", "Ebi Roll", "Premium Rolls", 13, "Garnelen, Frischkäse, Avocado, Rucola, Gurke", "10 Stück", "", 14),
-  menuItem("82a", "Yakiniku Ebi Roll", "Premium Rolls", 15, "Garnelen, Frischkäse, Avocado, Gurke, umwickelt mit flambiertem Lachs, Thunfisch oder Butterfisch", "10 Stück", "", 14),
-  menuItem("83", "Garnele Roll", "Premium Rolls", 13, "Avocado, knusprige Garnelen, gekochte Garnelen, umwickelt", "10 Stück", "", 14),
-  menuItem("84", "Gemischer Roll", "Premium Rolls", 13, "Frischkäse, Mango, Avocado, Lachs, Thunfisch, Rucola", "10 Stück", "", 8),
-  menuItem("84a", "Crazy Ebitempural", "Premium Rolls", null, "Knusprige Garnelen, Avocado, umwickelt mit Lachs, Tuna oder Butterfisch", "10 Stück", "", 9, "Preis im PDF nicht angegeben."),
-  menuItem("85", "Spezial Roll", "Premium Rolls", 10, "Surimi, Avocado, Gurken, Frischkäse, Rucola, Garnelen", "10 Stück", "", 14),
-  menuItem("86", "Knusprig Krebs Surimi Roll", "Premium Rolls", 10, "Avocado, knuspriger Krebs", "Unagi Sauce, japanische Mayonnaise, Wasabi Sauce, Tobiko, Sesam oder Schnittlauch", "", 15),
-  menuItem("89", "Tamago Omelet Roll", "Premium Rolls", 10, "Surimi, Gurken, Avocado, Rucola, Frischkäse, Unagi Sauce", "10 Stück", "", 15),
+addBlock("Signature Drinks", 3, `
+SH1|Avocado Lassi|8||Saisonal, bitte anfragen
+SH2|Orange Shake|8||Saisonal, bitte anfragen
+SH3|Wassermelone Shake|8||Saisonal, bitte anfragen
+SH4|Mango Lassi mit Minze|8||Saisonal, bitte anfragen
+HG1|Sweet Strawberry|8|Frisch gepresste Limetten, Minze, Erdbeere, Ingwer und Kumquats
+HG2|Lychee Deluxe|8|Frisch gepresste Limetten, Minze, Lychee, Ingwer und Kumquats
+HG3|Ananas|8|Frisch gepresste Limetten, Minze, Ananas, Ingwer und Kumquats
+HG4|Summer Lover|6|Frische Limetten, Soda, Ingwer und Minze
+HG5|Great Passion Fruit|7|Frische Limetten, Maracuja, Soda, Minze und Ingwer
+HG6|Beautiful Kumquats|7|Frisch gepresste Kumquats
+HG7|Ōkina Yume|6|Himbeerlimonade mit Ingwer und Minze
+ET1|Kazumi Eistee|8|Frische Kumquats und frisch gepresste Limette
+ET2|Zitronengras Eistee|8|Frische Kumquats, Orange, Limetten, Minze und Pfirsich
+ET3|Kings of Eistee|8|Lychee, Kumquats, Orange, Melone und Maracuja
+ET4|Lychee Eistee|8|Frische Lychee, Limetten, Minze, Tee und Kumquat
+ET5|Ananas Eistee|8|Ananas, Limetten, Minze, Tee und Kumquat
+`);
 
-  // Fried sushi, PDF pages 16-17
-  menuItem("903", "Inside-Out Knusprig", "Frittiertes Sushi", 14.50, "Spargel, Avocado, Mango, Sauce", "6 Stück", "", 17),
-  menuItem("907", "Maki Lachs", "Frittiertes Sushi", 14.50, "Maki Salmon, Mayonnaise, Teriyaki", "6 Stück", "", 17),
-  menuItem("908", "Maki Thunfisch", "Frittiertes Sushi", 14.50, "Maki Tuna, Mayonnaise, Teriyaki", "6 Stück", "", 17),
-  menuItem("909", "Maki Butterfisch", "Frittiertes Sushi", 14.50, "Teriyaki", "6 Stück", "", 17),
-  menuItem("910", "Crunchy Salmon", "Frittiertes Sushi", 14.50, "Lachs, Avocado, Surimi, Frischkäse, Mayonnaise und Teriyaki", "6 Stück", "", 17),
-  menuItem("911", "Crunchy Tuna", "Frittiertes Sushi", 14.50, "Thunfisch, Avocado, Surimi, Frischkäse, Mayonnaise und Teriyaki", "6 Stück", "", 17),
-  menuItem("912", "Crunchy Spezial", "Frittiertes Sushi", 15.50, "Lachs, Avocado, Surimi, Frischkäse, Thunfisch, Garnelen, Mayonnaise und Teriyaki", "6 Stück", "", 17),
-  menuItem("913", "Crunchy Sakana", "Frittiertes Sushi", 14.50, "Frischkäse, Avocado, Spargel, Surimi, Butterfisch, Teriyaki Sauce", "6 Stück", "", 17),
-  menuItem("914", "Crunchy Yakitori", "Frittiertes Sushi", 14.50, "Frischkäse, Avocado, Surimi, Hähnchen Teriyaki", "6 Stück", "", 16),
-  menuItem("915", "Crunchy Scallops", "Frittiertes Sushi", 14.50, "Jakobsmuscheln, Avocado, Spargel, Surimi, Frischkäse", "6 Stück", "", 16),
-  menuItem("916", "Crunchy Ebi Salmon", "Frittiertes Sushi", 14.50, "Lachs, Avocado, Garnelen, Frischkäse", "6 Stück", "", 16),
-  menuItem("917", "Crunchy Ebi Tuna", "Frittiertes Sushi", 14.50, "Garnelen, Avocado, Surimi, Thunfisch, Frischkäse", "6 Stück", "", 16),
-  menuItem("918", "Crunchy Ente", "Frittiertes Sushi", 14.50, "Lachs, Ente, Avocado, Surimi, Garnelen, Frischkäse", "6 Stück", "", 16),
-  menuItem("919", "Crunchy Spargel", "Frittiertes Sushi", 14.50, "Lachs, Ente, Spargel, Surimi, Frischkäse", "6 Stück", "", 16),
-  menuItem("920", "Crunchy Oktopus", "Frittiertes Sushi", 14.50, "Butterfisch, Oktopus, Avocado, Spargel, Frischkäse, Thunfisch", "6 Stück", "", 16),
-  menuItem("921", "Crunchy Kräuterseitling", "Frittiertes Sushi", 14.50, "Kräuterseitling, Lachs, Spargel, Ente, Frischkäse, Thunfisch, Nigiri", "6 Stück", "", 16),
+addBlock("Vorspeisen", 4, `
+1|Nem Thịt|6|Frühlingsrollen mit Schweinefleisch|3 Stück|a,c,4
+2|Kokossuppe|6||Fisch, Garnelen, Huhn, Ente oder Tofu|d,7
+3|Summer Roll|6|Sommerrollen aus Reispapier, Erdnuss, Koriander, frischem Salat und hausgemachter Soße|Ente: 6 €; Huhn oder Tofu: 7 €; Garnelen: 9 €; roher Lachs, Thunfisch oder Butterfisch: 11 €|4,d,b,1,7
+4|Zitronengrassuppe|6||Fisch, Garnelen, Huhn, Ente oder Tofu|d,7
+4b|Bánh Cuốn|6|Gerollt mit Garnelenfüllung|2 Stück|a,b,d,1,G,M,7
+6|Vịt Sa Lát|8|Ente mit Mango, gemischtem Salat, Erdnuss, Koriander, Avocado und hausgemachter Soße||d,b,1,7
+7|Seetangsalat Deluxe|5|Seetangsalat|Mit Mango: 8 €; mit Garnelen und Mango: 11 €|d,b,1,7
+8|Nem Tôm|6|Mit Schweinefleisch und Garnelen||d,b,1,7
+9|Siu Mai|6|Mit Schweinefleisch und Garnelen||f,1,d,b
+10|Nem Chay|5|Vegetarische Frühlingsrollen|6 Stück|1,7
+`);
 
-  // Sushi platters, PDF pages 18-21. Prices are absent in the source PDF.
-  menuItem("100", "Maki Platte", "Sushi Platten", null, "6 Sake Maki, 6 Avocado Tofu Maki, 6 Lachs Maki, Seetangsalat", "", "", 18, "Preis im PDF nicht angegeben."),
-  menuItem("102", "Inside-Out Platte", "Sushi Platten", null, "8 California Roll, 8 gekochter Lachs Roll, 8 Ebi Tempura Roll, Seetangsalat", "", "", 18, "Preis im PDF nicht angegeben."),
-  menuItem("103", "Lachs Platte", "Sushi Platten", null, "2 Sake Nigiri, 8 Salmon Roll, 6 Edo Maki, Edamame", "", "", 18, "Preis im PDF nicht angegeben."),
-  menuItem("104", "Thunfisch Platte", "Sushi Platten", null, "2 Maguro Nigiri, 6 Tekka Avocado Maki, 8 Tuna Roll, Seetangsalat", "", "", 18, "Preis im PDF nicht angegeben."),
-  menuItem("105", "Hunger Platte", "Sushi Platten", null, "2 Inari, 2 Ebi Nigiri, 6 Avocado Maki, 6 Lachs Maki, 8 Ebi Tempura Roll, Edamame", "", "", 18, "Preis im PDF nicht angegeben."),
-  menuItem("106", "Sushi Party Platte 1", "Sushi Platten", null, "4 Nigiri, 12 Maki, 8 Spargel Roll, 8 Ebi Tempura Roll, 5 Futo Maki, Seetangsalat", "", "", 18, "Preis im PDF nicht angegeben."),
-  menuItem("107", "Sushi Party Platte 2", "Sushi Platten", null, "8 Salmon Queen Roll, 5 Futo Maki, 12 Crunchy Roll, 8 Tuna Spargel Roll, 12 gemischte Maki, 3 Nigiri, Edamame", "", "", 18, "Preis im PDF nicht angegeben."),
-  menuItem("110", "Fitness Platte", "Sushi Platten", null, "8 Tuna Spargel Roll, 8 Sakana Mango Roll, 8 Surimi Inari Roll, 8 Salmon Queen Roll, Seetangsalat", "", "", 20, "Preis im PDF nicht angegeben."),
-  menuItem("111", "Sushi for One", "Sushi Platten", null, "Empfehlung des Sushimeisters. Jede Bestellung wird unterschiedlich sein.", "", "", 20, "Preis im PDF nicht angegeben."),
-  menuItem("112", "Sushi for 2", "Sushi Platten", null, "Empfehlung des Sushimeisters. Jede Bestellung wird unterschiedlich sein, mit oder ohne Sashimi.", "", "", 20, "Preis im PDF nicht angegeben."),
-  menuItem("502", "Sushi Platte 3", "Sushi Platten", null, "8 Surimi Inari Roll, 8 Salmon Roll, 4 Sake Nigiri, Seetangsalat", "", "", 19, "Preis im PDF nicht angegeben."),
-  menuItem("503", "Sushi Platte 7", "Sushi Platten", null, "8 Salmon Queen Roll, 12 Maki, 8 Salmon Garnelen Roll, 3 Nigiri Salmon, 3 Tuna, Edamame", "", "", 19, "Preis im PDF nicht angegeben."),
-  menuItem("504", "Salmon Deluxe", "Sushi Platten", null, "6 Edo Maki, 6 Sake Nigiri, 8 Surimi Inari Roll, 8 Salmon Roll, 5 Futo Maki, 6 Sashimi, Seetangsalat", "", "", 19, "Preis im PDF nicht angegeben."),
-  menuItem("505", "Sushi Platte 6", "Sushi Platten", null, "4 Nigiri, 5 Futo Maki, 8 Inside-Out Roll, 6 Crunchy Roll, 12 Maki, Edamame", "", "", 19, "Preis im PDF nicht angegeben."),
-  menuItem("506", "Sushi Platte 21", "Sushi Platten", null, "6 Crunchy Roll, 6 gekochter Salmon Maki, 6 Avocado Maki, 8 Ebi Tempura Roll, 4 Nigiri, Seetangsalat", "", "", 19, "Preis im PDF nicht angegeben."),
-  menuItem("507", "Sushi Platte 22", "Sushi Platten", null, "3 Sake Nigiri, 2 Ebi Nigiri, 3 Maguro Nigiri, 6 Avocado Maki, 8 Tuna Roll, 6 Edo Maki, Edamame", "", "", 20, "Preis im PDF nicht angegeben."),
-  menuItem("508", "Sushi Platte 23", "Sushi Platten", null, "6 gekochter Salmon Maki, 6 Sashimi, 4 Nigiri, 8 California Roll, 8 Ebi Tempura Roll, Seetangsalat", "", "", 20, "Preis im PDF nicht angegeben."),
-  menuItem("509", "Express Platte 1", "Sushi Platten", null, "16 Inside-Out Roll, 6 Crunchy Roll, 5 Futo Maki, Edamame", "", "", 20, "Preis im PDF nicht angegeben."),
-  menuItem("510", "Express Platte 2", "Sushi Platten", null, "6 Maki, 2 Nigiri, 6 Crunchy Roll, 8 Inside-Out Roll, 5 Futo Maki, Seetangsalat", "", "", 20, "Preis im PDF nicht angegeben."),
-  menuItem("511", "Sushi Party Platte 3", "Sushi Platten", null, "12 Crunchy Roll, 12 Maki, 16 Inside-Out Roll, 5 Futo Maki, Edamame", "", "", 19, "Preis im PDF nicht angegeben."),
-  menuItem("512", "Sushi Party Platte 4", "Sushi Platten", null, "8 Salmon Spargel Roll, 8 Salmon Roll, 5 Futo Maki, 2 Ebi Nigiri, 2 Maguro Nigiri, 4 Sake Nigiri, Seetangsalat", "", "", 19, "Preis im PDF nicht angegeben."),
-  menuItem("514", "Sushi Platte 8", "Sushi Platten", null, "4 Salmon Nigiri, 2 Maguro, 6 Tekka Maki, 4 Salmon Roll, 4 California Roll, Seetangsalat", "", "", 21, "Preis im PDF nicht angegeben."),
-  menuItem("515", "Sushi Platte 9", "Sushi Platten", null, "6 Sake Nigiri, 4 Salmon Roll, 4 California Roll, Edamame", "", "", 21, "Preis im PDF nicht angegeben."),
-  menuItem("516", "Sushi Platte 9 - Prinzessin Menü", "Sushi Platten", null, "6 Crunchy Roll, 8 Salmon Roll, 8 California Aubergine Roll, 2 Maguro Nigiri, 2 Ebi Nigiri, 2 Salmon Nigiri, Seetangsalat", "", "", 21, "Doppelter Name mit Code 515 im Original. Preis nicht angegeben."),
-  menuItem("901", "Healthy Platte", "Sushi Platten", null, "8 Surimi Inari, 8 Ebi Tempura, 6 Avocado Maki, 6 Crunchy Roll, 2 Ebi Nigiri, Edamame", "", "", 21, "Preis im PDF nicht angegeben."),
+addBlock("Vorspeisen", 5, `
+9A|Ha Cao|6|Gedämpfte Teigtaschen mit Garnelen||f,1,d,b
+11|Oktopus frittiert|6|Mit Mayonnaise||b,d,g,7,1
+12|Crispy Black Tiger Garnelen|6||2 Stück|a,b,d,l,G,M,1,7
+13|Gyoza|6||4 Stück, Huhn oder vegetarisch|a,f,7,1
+15|Kazumi Takiki|13|Roh, Salat, Kazumi Sauce, scharf|Lachs, Thunfisch, Butterfisch oder gemischt|d,1,7
+16|Hannayuki Ente|7|Ente, Salat, Erdnuss und hausgemachte Soße||a,h,l,G,M,1,7
+17|Knuspriges Chicken Teriyaki|7|Knuspriges Hähnchen mit Teriyaki||h,d,g,7,1
+18|Aubergine Bombe|6|Frittierte Aubergine||a,b,d,l,G,M,1,7
+19|Tintenfisch frittiert|7|Mit Mayonnaise||a,b,d,l,G,M,1,7
+19a|Japanese Cheese Sticks|4|Frittiert||d,7,1
+`);
 
-  // Vegan and vegetarian menu, PDF pages 22-28
-  menuItem("600", "Spargel Maki", "Vegan & Vegetarisch", null, "Spargel", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("601", "Mango Maki", "Vegan & Vegetarisch", null, "Mango", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("602", "Mozzarella Maki", "Vegan & Vegetarisch", null, "Mozzarella", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("603", "Kräuterseitling Maki", "Vegan & Vegetarisch", null, "Japanische Kräuterseitlinge", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("604", "Frittierter Spargel Maki", "Vegan & Vegetarisch", null, "Frittierter Spargel", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("605", "Vegan Avocado Fry Maki", "Vegan & Vegetarisch", null, "Avocado", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("606", "Vegan Avocado Maki", "Vegan & Vegetarisch", null, "Avocado", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("607", "Vegetarisch Kappa Maki", "Vegan & Vegetarisch", null, "Gurken, Frischkäse, Sesam", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("608", "Vegetarisch Tamago Maki", "Vegan & Vegetarisch", null, "Eier, Sesam", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("609", "Vegan Avocado Tofu Maki", "Vegan & Vegetarisch", null, "Avocado, Tofu", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("610", "Vegetarische Rucola Maki", "Vegan & Vegetarisch", null, "Frischkäse, Rucola", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("611", "Vegan Wakame Maki", "Vegan & Vegetarisch", null, "Algensalat und Sesam", "", "", 24, "Preis im PDF nicht angegeben."),
-  menuItem("615", "Seetangsalat", "Vorspeisen", null, "Seaweed Salad", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("616", "Zitronengrassuppe mit Tofu", "Vorspeisen", null, "Zitronengrassuppe und Tofu", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("617", "Kokos Suppe mit Tofu", "Vorspeisen", null, "Kokossuppe und Tofu", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("618", "Japanese Cheese Sticks", "Vorspeisen", null, "Frittiert", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("619", "Aubergine Teriyaki", "Vorspeisen", null, "Aubergine mit Teriyaki", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("620", "Vegetarische Frühlingsrollen", "Vorspeisen", null, "6 Stück", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("621", "Yasai Tempura", "Vorspeisen", null, "Frittiertes Gemüse und Käse", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("622", "Gyoza Vegetarisch", "Vorspeisen", null, "4 Stück", "", "", 22, "Preis im PDF nicht angegeben."),
-  menuItem("623", "Bún Trộn", "Vegan & Vegetarisch", null, "Reisnudeln, Salat, Sauce, Tofu, Erdnuss, Röstzwiebeln, Koriander", "Traditionelles vietnamesisches Gericht", "", 23, "Preis im PDF nicht angegeben."),
-  menuItem("624", "Vegetarisch Hokkaido Curry", "Vegan & Vegetarisch", null, "Frisches Gemüse und Reis mit Tofu", "", "", 23, "Preis im PDF nicht angegeben."),
-  menuItem("625", "Udon Thai Curry", "Vegan & Vegetarisch", null, "Thai Curry Sauce, Gemüse, Tofu", "", "", 23, "Preis im PDF nicht angegeben."),
-  menuItem("626", "Reisnudeln Erdnusssauce", "Vegan & Vegetarisch", null, "Reisnudeln, Erdnusssauce, Salat, Tofu", "", "", 23, "Preis im PDF nicht angegeben."),
-  menuItem("627", "Phở Salat Tofu", "Vegan & Vegetarisch", null, "Bandnudeln, Salat, hausgemachte Sauce, Erdnuss", "", "", 23, "Preis im PDF nicht angegeben."),
-  menuItem("628", "Phở Trộn", "Vegan & Vegetarisch", null, "Reisbandnudeln, Salat, Sauce, Tofu, Erdnuss, Röstzwiebeln, Koriander", "Traditionelles vietnamesisches Gericht", "", 23, "Preis im PDF nicht angegeben."),
-  menuItem("629", "Kazumi", "Vegan & Vegetarisch", null, "Mango Sauce, Reis, Gemüse, Tofu", "", "", 23, "Preis im PDF nicht angegeben."),
-  menuItem("630", "Mango Queen", "Spezial Rolls", null, "Mango, Gurken, Frischkäse, Avocado", "", "", 26, "Preis im PDF nicht angegeben."),
-  menuItem("631", "Tofu Onion", "Spezial Rolls", null, "Tofu, Frischkäse, rote Zwiebel, Spargel, Avocado", "", "", 26, "Preis im PDF nicht angegeben."),
-  menuItem("632", "Yashai Roll", "Spezial Rolls", null, "Japanische Kräuterseitlinge, umwickelt mit Avocado und Panko Butter", "", "", 26, "Preis im PDF nicht angegeben."),
-  menuItem("633", "Geisha Roll", "Spezial Rolls", null, "Panierte Zucchini, Frischkäse, Spargel, umwickelt mit Avocado, Tofu und Süßkartoffel", "", "", 26, "Preis im PDF nicht angegeben."),
-  menuItem("634", "Yashai Crazy", "Spezial Rolls", null, "Kräuterseitlinge, Spargel, Gurken, Frischkäse, umwickelt mit Avocado und Tofu", "", "", 26, "Preis im PDF nicht angegeben."),
-  menuItem("635", "Mozzarella Lover Roll", "Spezial Rolls", null, "Frischkäse, Gurken, Mozzarella, Avocado", "", "", 26, "Preis im PDF nicht angegeben."),
-  menuItem("636", "Panko Butter Bombe Roll", "Spezial Rolls", null, "Käse, Panko Butter, Avocado, Spargel, Gurken", "", "", 27, "Preis im PDF nicht angegeben."),
-  menuItem("637", "Aubergine Bombe Roll", "Spezial Rolls", null, "Knusprige Aubergine, Frischkäse, Gurken, Spargel", "", "", 27, "Preis im PDF nicht angegeben."),
-  menuItem("638", "Avocado Queen Roll", "Spezial Rolls", null, "Frischkäse, Avocado, Gurken, Rucola, Tofu, Eier", "", "", 27, "Preis im PDF nicht angegeben."),
-  menuItem("639", "Spargel Roll", "Spezial Rolls", null, "Frischkäse, Avocado, Gurken, Rucola, Tofu, Spargel", "", "", 27, "Preis im PDF nicht angegeben."),
-  menuItem("640", "Avocado Lover Roll", "Spezial Rolls", null, "Knusprige Avocado, Frischkäse, Gurken", "", "", 27, "Preis im PDF nicht angegeben."),
-  menuItem("641", "Sweet Sakura Roll", "Spezial Rolls", null, "Avocado, Spargel, Rucola, Frischkäse, Süßkartoffel", "", "", 27, "Preis im PDF nicht angegeben."),
-  menuItem("642", "Tamago Lucky Roll", "Spezial Rolls", null, "Gurken, Avocado, Rucola, Frischkäse", "", "", 27, "Preis im PDF nicht angegeben."),
-  menuItem("660", "Knusprig Eier Maki", "Vegan & Vegetarisch", null, "Knusprige Maki mit Ei", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("661", "Knusprig Spargel Maki", "Vegan & Vegetarisch", null, "Knusprige Maki mit Spargel", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("662", "Knusprig Avocado Maki", "Vegan & Vegetarisch", null, "Knusprige Maki mit Avocado", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("663", "Vegan Crunchy Roll", "Vegan & Vegetarisch", null, "Vegane Crunchy Roll", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("664", "Vegetarisch Crunchy Roll", "Vegan & Vegetarisch", null, "Vegetarische Crunchy Roll", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("670", "Maki Platte", "Vegan & Vegetarisch", null, "18 Maki, vegan oder vegetarisch", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("671", "Express Menü", "Vegan & Vegetarisch", null, "16 Inside-Out Roll, 12 Maki, 5 Futo Maki", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("672", "Inside-Out Menü", "Vegan & Vegetarisch", null, "16 Inside-Out Roll, Seetangsalat", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("673", "Healthy Platte", "Vegan & Vegetarisch", null, "16 Spezial Roll, 12 Maki, 12 Crunchy Roll", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("674", "Hunger Menü", "Vegan & Vegetarisch", null, "Seetangsalat, 12 Maki, Crunchy Roll, 8 Spezial Roll", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("675", "Fitness Menü", "Vegan & Vegetarisch", null, "24 Inside-Out Roll, Seetangsalat", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("676", "Sushi Party 3", "Vegan & Vegetarisch", null, "24 Spezial Roll, 5 Futo Maki, 18 gemischte Maki und Crunchy Roll", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("677", "Sushi Platte 3", "Vegan & Vegetarisch", null, "16 Inside-Out Roll, Crunchy Roll", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("678", "Sushi Party 1", "Vegan & Vegetarisch", null, "12 Maki, 16 Inside-Out Roll, Seetangsalat", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("679", "Sushi Party 2", "Vegan & Vegetarisch", null, "Crunchy Roll, 12 Maki, 16 Spezial Roll, 5 Futo Maki", "", "", 28, "Preis im PDF nicht angegeben."),
-  menuItem("690", "Vegan Futo Maki", "Vegan & Vegetarisch", null, "Avocado, Gurken, Rucola, Spargel, Tofu", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("691", "Vegetarisch Futo Maki", "Vegan & Vegetarisch", null, "Käse, Avocado, Gurken, Eier, Rucola, Spargel", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("692", "Vegetarisch Futo Avocado Maki", "Vegan & Vegetarisch", null, "Frischkäse, Avocado, Gurken, Eier, Rucola, japanische Kräuterseitlinge", "", "", 25, "Preis im PDF nicht angegeben."),
-  menuItem("693", "Vegetarisch Futo Spargel", "Vegan & Vegetarisch", null, "Frischkäse, Avocado, Gurken, Rucola, Spargel, Tofu", "", "", 25, "Preis im PDF nicht angegeben."),
+addBlock("Ramen & Pho", 6, `
+R1|Kimchi Ramen|17|Würzige Sesambrühe, Kimchi, Schweinebauch, Frühlingszwiebeln, Bohnensprossen, Sesam und Ei
+R2|Hannayuki Ramen|19|Miso Brühe, Schweinebauch, Ei, Frühlingszwiebeln, Sesam und Garnelen
+P1|Phở Bò|15|Rinderbrühe, Reisnudeln, Frühlingszwiebeln, Zwiebeln, Koriander, Basilikum, Limette und Chili|Mit Huhn: 15 €; mit Rind: 17 €
+`);
 
-  // Ramen and pho, PDF pages 29-30
-  menuItem("R01-K", "Kimchi Ramen", "Ramen & Pho", 16.90, "Würzige Sesambrühe, Kimchi, Chashu, Ajitama, Frühlingszwiebeln, Bohnensprossen, Sesam", "", "", 29),
-  menuItem("R02-K", "Kazumi Ramen", "Ramen & Pho", 15.90, "Miso Brühe, Chashu, Ajitama, Menma, Nori, Frühlingszwiebeln, Sesam", "", "", 29),
-  menuItem("P03", "Phở Bò", "Ramen & Pho", 13.90, "Rinderbrühe, Reisnudeln, Rindfleisch, Frühlingszwiebeln, Zwiebeln, Koriander, Basilikum, Limette, Chili", "", "", 29),
-  menuItem("R01", "Miso Ramen", "Ramen & Pho", 15.90, "Miso Brühe, Chashu, Menma, Frühlingszwiebeln, Nori, Ajitama, Sesam", "", "", 30),
-  menuItem("R02", "Tan Tan Ramen", "Ramen & Pho", 16.90, "Würzige Sesambrühe, Chashu, Moyashi, Kimchi, Frühlingszwiebeln, Ajitama, Sesam", "", "", 30),
-  menuItem("R03", "Shoyu Ramen", "Ramen & Pho", 14.90, "Shoyu Brühe, Chashu, Moyashi, Frühlingszwiebeln, Ajitama, Sesam", "", "", 30),
+addBlock("Ramen & Pho", 7, `
+R3|Miso Ramen|17|Miso Brühe, Schweinebauch, Frühlingszwiebeln, Ei und Sesam
+R4|Tan Tan Ramen|17|Würzige Sesambrühe, Schweinebauch, Kimchi, Frühlingszwiebeln, Ei und Sesam
+R5|Shoyu Ramen|17|Shoyu Brühe, Schweinebauch, Frühlingszwiebeln, Ei und Sesam
+`);
 
-  // Starters and salads, PDF pages 31-32
-  menuItem("1", "Nem Thịt", "Vorspeisen", 6, "Mit Schweinefleisch", "", "a,c,4", 31),
-  menuItem("2", "Kokossuppe", "Vorspeisen", 6, "Kokossuppe", "Fisch, Garnelen, Huhn, Ente oder Tofu", "d,7", 31),
-  menuItem("3", "Summer Roll", "Vorspeisen", 6, "Sommerrollen aus Reispapier, Erdnuss, Koriander, frischem Salat und hausgemachter Sauce", "Huhn, Chicken oder Tofu: 9 €; Garnelen: 11 €; Salmon, Tuna oder Butterfisch roh: 11 €", "a,b,d,1,G,M,7", 31),
-  menuItem("4", "Zitronengrassuppe", "Vorspeisen", 6, "Zitronengrassuppe", "Fisch, Shrimps, Chicken, Duck oder Tofu", "d,7", 31),
-  menuItem("4b", "Bánh Cuốn", "Vorspeisen", 7, "Gerollt mit Garnelenfüllung", "", "4,d,b,1,7", 31),
-  menuItem("6", "Vịt Sa Lát", "Vorspeisen", 11, "Ente mit Mango, gemischtem Salat, Erdnuss, Koriander und hausgemachter Sauce", "", "d,b,1,7", 31),
-  menuItem("7", "Seetangsalat Deluxe", "Vorspeisen", 5, "Nur Seetangsalat", "Mit Mango: 6 €; Garnelen und Mango: 8 €", "d,b,1,7", 31),
-  menuItem("8", "Nem Tôm", "Vorspeisen", 6, "Frittiert mit Schweinefleisch und Garnelen", "", "", 31),
-  menuItem("9", "Siu Mai", "Vorspeisen", 6, "Gedämpfte Teigtaschen", "", "f,1,d,b", 31),
-  menuItem("10", "Nem Chay", "Vorspeisen", 5, "Vegetarische Frühlingsrollen", "", "1,7", 31),
-  menuItem("9A", "Ha Cao", "Vorspeisen", 6, "Teigtaschen gedämpft mit Garnelen", "", "f,1,d,b", 32),
-  menuItem("11", "Oktopus frittiert", "Vorspeisen", 6, "Mit Mayonnaise", "", "b,d,g,7,1", 32),
-  menuItem("12", "Crispy Black Tiger Garnelen", "Vorspeisen", 8, "2 Stück", "", "a,b,d,l,G,M,1,7", 32),
-  menuItem("13", "Gyoza", "Vorspeisen", 6, "4 Stück", "Huhn oder vegetarisch; gedämpft oder frittiert", "a,f,7,1", 32),
-  menuItem("15", "Kazumi Tataki", "Vorspeisen", 15, "Roh, Salat, Kazumi Sauce, scharf", "Lachs, Tuna, Butterfisch oder gemischt", "d,1,7", 32),
-  menuItem("16", "Kazumi Ente", "Vorspeisen", 7, "Kazumi Sauce, Ente, Salat, Erdnuss", "", "a,h,l,G,M,1,7", 32),
-  menuItem("17", "Knuspriges Chicken Teriyaki", "Vorspeisen", 7, "Knuspriges Hähnchen mit Teriyaki", "", "h,d,g,7,1", 32),
-  menuItem("18", "Aubergine Bombe", "Vorspeisen", 6, "Frittierte Aubergine", "", "a,b,d,l,G,M,1,7", 32),
-  menuItem("19", "Tintenfisch Rings", "Vorspeisen", 7, "Frittiert mit Mayonnaise", "", "a,b,d,l,G,M,1,7", 32),
-  menuItem("19a", "Japanese Cheese Sticks", "Vorspeisen", 4, "Frittiert", "", "d,7,1", 32),
+addBlock("Hauptgerichte", 8, `
+20|Angry Beef|17|Koreanisches Rindfleisch, gebraten mit Gemüse, Reis und Sesam, scharf||a,b,d,l,G,M,1,7
+21|Seoul Fire Ika|17|Koreanische Soße mit frischem Gemüse, Reis, Sesam und Tintenfisch, leicht scharf||b,d,l,G
+22|Shaolin Bowl|17|Kimchi, Reis, Salat und Kazumi Sauce, leicht scharf|Ente oder Rind: 17 €; Lachs: 19 €|a,b,d,l,G,M,1,7
+23|Golden Thai Curry|15|Hokkaido Thai Curry auf frischem Gemüse und Reis|Knusprige Ente, Garnelen oder knuspriges Hähnchen: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €|a,b,d,l,G,M,1,7
+24|Vịt Teriyaki|17|Ente mit Salat, hausgemachtem Teriyaki Reis, Erdnuss, Röstzwiebeln und Koriander||a,b,d,l,G,M,1,7
+`);
 
-  // Main dishes and Asian specials, PDF pages 33-34
-  menuItem("20", "Angry Beef", "Hauptgerichte", 17, "Koreanisches Rindfleisch, gebraten mit Gemüse, Reis, Sesam, scharf", "", "a,b,d,l,G,M,1,7", 33),
-  menuItem("21", "Tintenfisch Bombe", "Hauptgerichte", 17, "Wenig scharf, koreanische Sauce, frisches Gemüse, Reis, Sesam, Tintenfisch, Schweinefleisch", "", "b,d,l,G", 33),
-  menuItem("22", "Shaolin Bowl", "Hauptgerichte", 17, "Kimchi, Reis, Salat, wenig scharf, Kazumi Sauce", "Ente: 17 €; Rind: 17 €; Lachs: 19 €", "a,b,d,l,G,M,1,7", 33),
-  menuItem("23", "Hokkaido Thai Curry", "Hauptgerichte", 17, "Hokkaido Thai Curry auf frischem Gemüse und Reis", "Knusprige Ente: 17 €; Garnelen: 17 €; Hähnchen knusprig: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €", "a,b,d,l,G,M,1,7", 33),
-  menuItem("24", "Vịt Teriyaki", "Hauptgerichte", 17, "Ente mit Salat, hausgemachtem Teriyaki Reis, Erdnuss, Röstzwiebeln und Koriander", "", "a,b,d,l,G,M,1,7", 33),
-  menuItem("25", "Bánh Canh", "Asian Specials", 15, "Gebratene Udon Nudeln, Gemüse, Röstzwiebeln und Erdnuss", "Ente oder Garnelen: 17 €; Hähnchen knusprig: 17 €; Huhn, Tofu oder Schweinefleisch: 15 €; Jakobsmuscheln: 23 €", "a,b,d,l,G,M,1,7", 34),
-  menuItem("26", "Deep Gold Mango", "Asian Specials", 15, "Frisches Saisongemüse in hausgemachter Mango Sauce", "Ente oder Rind: 17 €; Huhn, Tofu oder Schweinefleisch: 15 €", "a,b,d,l,G,M,1,7", 34),
-  menuItem("27", "Cơm Bò Hàn Quốc", "Asian Specials", 17, "Koreanisches Rindfleisch, gebraten mit Gemüse, Reis und Sesam", "", "a,b,d,l,G,M,1,7", 34),
-  menuItem("28", "Go Chu Jang Sam", "Asian Specials", 19, "Koreanische Sauce, frisches Gemüse, Reis, Sesam und Rindfleisch", "", "a,b,d,l,G,M,1,7", 34),
-  menuItem("32", "Lucky Spring Rolls", "Asian Specials", 17, "Schweinefleisch-Frühlingsrollen mit Gemüse, Salat, Sushi Reis und Kimchi", "", "f,1,d,b", 34),
-  menuItem("33", "Pan Fried Poulader", "Asian Specials", 17, "Gemüse mit Teriyaki Sauce, Sushi Reis, Salat, Gyoza Huhn und Kimchi", "", "", 34),
+addBlock("Asian Specials", 9, `
+25|Bánh Canh|17|Gebratene Udon Nudeln mit Gemüse, Röstzwiebeln und Erdnuss|Knuspriges Hähnchen: 17 €; Ente oder Rind: 19 €; Huhn, Tofu oder Schweinefleisch: 17 €; Jakobsmuscheln: 23 €|a,b,d,l,G,M,1,7
+26|Deep Gold Mango|15|Frisches Saisongemüse in hausgemachter Mango Sauce|Ente oder Garnelen: 17 €; knuspriges Hähnchen: 17 €; Huhn, Tofu oder Schweinefleisch: 15 €|a,b,d,l,G,M,1,7
+27|Cơm Bò Hàn Quốc|17|Koreanisches Rindfleisch, gebraten mit Gemüse, Reis und Sesam||a,b,d,l,G,M,1,7
+28|Go Chu Jang Sam|17|Koreanische Soße mit frischem Gemüse, Reis, Sesam und Rindfleisch, leicht scharf||a,b,d,l,G,M,1,7
+32|Lucky Spring Rolls|17|Schweinefleisch Frühlingsrollen mit Gemüse, Salat, Sushi Reis und Kimchi||f,1,d,b
+33|Pan Fried Poulader|19|Gemüse mit Teriyaki Sauce, Sushi Reis, Salat, Gyoza Huhn und Kimchi||a,b,d,L,G,M,1,7
+`);
 
-  // Seafood, Hanoi, curry and teriyaki, PDF pages 35-38
-  menuItem("34", "Golden Scallop", "Seafood & Hanoi Specials", 23, "Wenig scharf, koreanische Sauce, frisches Gemüse, Reis, Sesam und Jakobsmuscheln", "", "b,d,L,G,M,1", 35),
-  menuItem("35", "Super Sea Bowl", "Seafood & Hanoi Specials", 19, "Reis, Kimchi, Salat, roher Fisch, Kazumi Sauce, leicht scharf", "", "a,b,d,L,G,M,1,7", 35),
-  menuItem("36", "Noble Harmony Salmon", "Seafood & Hanoi Specials", 19, "Gemüse mit Teriyaki Sauce, Reis, Salat, Erdnuss und Röstzwiebeln", "", "f,1,d,b", 35),
-  menuItem("37", "Bún Hà Nội", "Seafood & Hanoi Specials", 17, "Reisfadennudeln mit süß-saurer, würziger und salziger Fischsauce und Rindfleisch", "", "a,b,d,L,G,M,1,7", 35),
-  menuItem("38", "Hot Angry Bún", "Seafood & Hanoi Specials", 17, "Reisnudeln, Salat, Sauce, Erdnuss, Röstzwiebeln, Koriander und Sojasprossen", "Huhn, Schweinefleisch oder Tofu", "a,b,d,L,G,M,1,7", 35),
-  menuItem("39", "Bún Nem Frühlingsrollen", "Seafood & Hanoi Specials", 15, "Reisnudeln, Salat, Salatsauce, Schweinefleisch-Frühlingsrollen, Erdnuss, Röstzwiebeln und Koriander", "", "a,b,d,L,G,M,1,7", 36),
-  menuItem("40", "Phở Love", "Seafood & Hanoi Specials", 15, "Bandnudeln, Salat, Salatsauce, Erdnuss, Röstzwiebeln und Koriander", "Ente, Tofu, Beef oder Schweinefleisch", "a,b,d,L,G,M,1,7", 36),
-  menuItem("41", "Butter Udon", "Seafood & Hanoi Specials", 15, "Gebratene Udon Nudeln, Pak Choi und Butter-Soja Sauce", "Mit Garnelen oder Rindfleisch", "", 36),
-  menuItem("42", "Tintenfisch Steak", "Seafood & Hanoi Specials", 25, "Gebratener Tintenfisch mit Salat, Reis und Teriyaki Sauce", "", "a,b,d,L,G,M", 36),
-  menuItem("43", "Golden Udon", "Seafood & Hanoi Specials", 17, "Udon Nudeln, Thai Curry Sauce und Gemüse", "Garnelen, Ente, Huhn, Schweinefleisch, Tofu oder Hähnchen knusprig", "", 36),
-  menuItem("45", "Phở Trộn", "Seafood & Hanoi Specials", 15, "Reisbandnudeln mit Salat, Sauce, Erdnuss, Röstzwiebeln, Koriander und Sojasprossen", "Knusprige Ente: 17 €; Garnelen: 17 €; Hähnchen knusprig: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €", "a,b,d,L,G,M,1,7", 37),
-  menuItem("46", "Thai Curry Erdnuss Sauce", "Curry & Teriyaki", 15, "Auf frischem Gemüse und Reis oder Nudeln", "Knusprige Ente: 17 €; Garnelen: 17 €; Hähnchen knusprig: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €", "a,b,d,L,G,M,1,7", 37),
-  menuItem("47-P", "Phở Curry", "Curry & Teriyaki", 17, "Auf frischem Gemüse und Nudeln", "Knusprige Ente oder Garnelen", "", 37),
-  menuItem("47", "Panang Curry", "Curry & Teriyaki", null, "In Thai-Kokosmilch mit Reis, Salat und Ente", "", "", 38, "Preis im PDF nicht angegeben."),
-  menuItem("47a", "Beef Steak Teriyaki", "Curry & Teriyaki", null, "Mit Reis, Salat, Teriyaki Sauce, Spargel, Kräuterseitlingen und Rindfleisch-Steak", "", "", 38, "Preis im PDF nicht angegeben."),
-  menuItem("47b", "Massaman Curry", "Curry & Teriyaki", null, "In Thai-Kokosmilch mit Bandnudeln, Gemüse, Salat und Ente", "", "", 38, "Preis im PDF nicht angegeben."),
-  menuItem("47c", "Chicken Steak", "Curry & Teriyaki", null, "Mit Reis, Salat und Chicken Teriyaki Sauce", "", "", 38, "Preis im PDF nicht angegeben."),
+addBlock("Seafood & Hanoi Specials", 10, `
+34|Golden Scallop|23|Koreanische Soße mit frischem Gemüse, Reis, Sesam und Jakobsmuscheln, leicht scharf||b,d,L,G,M,1
+35|Super Sea Bowl|19|Reis, Kimchi, Salat, roher Fisch und Kazumi Sauce, leicht scharf||a,b,d,L,G,M,1,7
+36|Noble Harmony Salmon|19|Gemüse mit Teriyaki Sauce, Reis, Salat, Erdnuss und Röstzwiebeln||f,1,d,b
+37|Hà Nội Élégance|17|Reisfadennudeln mit süß-saurer, würziger und salziger Fischsauce und Rindfleisch||a,b,d,L,G,M,1,7
+38|Hot Angry Bún|17|Reisnudeln mit Salat, Sauce, Erdnuss, Röstzwiebeln, Koriander und Sojasprossen|Huhn, Schweinefleisch, Tofu, Ente oder Rind|a,b,d,L,G,M,1,7
+`);
 
-  // Drinks, PDF pages 39-40
-  menuItem("G1", "Cola / Cola Zero / Fanta", "Getränke", 3.50, "0,33 l", "", "", 39),
-  menuItem("G2", "Sprite / Mezzo Mix / Ginger Ale", "Getränke", 3.50, "0,33 l", "", "", 39),
-  menuItem("G3", "Mineralwasser", "Getränke", 3, "0,33 l, still oder sprudelnd", "", "", 39),
-  menuItem("G4", "Mineralwasser Flasche", "Getränke", 6, "0,75 l", "", "", 39),
-  menuItem("G6", "Lychee Saft", "Getränke", 4, "0,33 l, auch als Schorle", "", "", 39),
-  menuItem("G8", "Apfelsaft", "Getränke", 4, "0,33 l, auch als Schorle", "", "", 39),
-  menuItem("G9", "Mangosaft", "Getränke", 4, "0,33 l, auch als Schorle", "", "", 39),
-  menuItem("G14", "Maracuja Saft", "Getränke", 4, "0,33 l, auch als Schorle", "", "", 39),
-  menuItem("G15", "Kazumi Tee", "Getränke", 4.50, "Tee", "", "", 39),
-  menuItem("G15a", "Lemongrass Tee", "Getränke", 5, "Nur im Winter: Lemongrass, Ingwer und Honig", "", "", 39),
-  menuItem("G31", "Hugo", "Getränke", 7, "Prosecco, Holunder, Limetten, Minze", "", "", 39),
-  menuItem("G32", "Aperol Spritz", "Getränke", 7, "Prosecco, Aperol", "", "", 39),
-  menuItem("G32b", "Kumquat Bombe", "Getränke", 7, "Prosecco, Kumquats, Limetten, Minze, Ingwer, Holunder", "", "", 39),
-  menuItem("G33", "Asahi", "Getränke", 4, "0,33 l", "", "", 39),
-  menuItem("G33a", "Hefeweizen", "Getränke", 4, "0,33 l", "", "", 39),
-  menuItem("G33b", "Schönbuch Bier", "Getränke", 4, "0,33 l", "", "", 39),
-  menuItem("G35", "Kirin", "Getränke", 4, "0,33 l", "", "", 39),
-  menuItem("G35a", "Alkoholfreies Bier", "Getränke", 4, "0,33 l", "", "", 39),
-  menuItem("G36", "Rotwein", "Getränke", 5.70, "0,2 l", "", "", 39),
-  menuItem("G37", "Weißwein", "Getränke", 5.70, "0,2 l", "", "", 39),
-  menuItem("G39", "Weißwein Schorle", "Getränke", 4.70, "", "", "", 39),
-  menuItem("G40", "Rotwein Schorle", "Getränke", 4.70, "", "", "", 39),
-  menuItem("G41", "Roséwein", "Getränke", 5.70, "0,2 l", "", "", 39),
-  menuItem("G42", "Sake", "Getränke", 6, "Warm oder kalt", "", "", 39),
-  menuItem("G43", "Milchkaffee-Spezialitäten", "Getränke", 6, "", "", "", 39),
-  menuItem("D01", "Avocado Lassi", "Signature Drinks", 8, "Shake und Lassi", "", "", 40),
-  menuItem("D02", "Orange Shake", "Signature Drinks", 8, "Shake", "", "", 40),
-  menuItem("D03", "Wassermelone Shake", "Signature Drinks", 8, "Shake", "", "", 40),
-  menuItem("D04", "Mango-Lassi mit Minze", "Signature Drinks", 8, "Lassi", "", "", 40),
-  menuItem("D05", "Sweet Strawberry", "Signature Drinks", 8, "Frisch gepresste Limetten, Minze, Erdbeere, Ingwer", "", "1,115", 40),
-  menuItem("D06", "Lychee Deluxe", "Signature Drinks", 8, "Frisch gepresste Limetten, Minze, Lychee, Ingwer", "Mit Wodka +1 €", "1,115", 40),
-  menuItem("D07", "Ananas", "Signature Drinks", 8, "Frisch gepresste Limetten, Minze, Ananas, Ingwer", "", "1,115", 40),
-  menuItem("D08", "Kazumi Eistee", "Signature Drinks", 8, "Frische Kumquats, frisch gepresste Limette", "Saisonal, bitte anfragen", "1,115", 40),
-  menuItem("D09", "Zitronengras-Eistee", "Signature Drinks", 8, "Frische Orange, Limetten, Minze, Pfirsich", "Saisonal, bitte anfragen", "1,115", 40),
-  menuItem("D10", "Kings of Eistee", "Signature Drinks", 8, "Lychee, Kumquats, Orange, Melone, Maracuja", "Saisonal, bitte anfragen", "1,115", 40),
-  menuItem("D11", "Lychee-Eistee", "Signature Drinks", 8, "Frische Lychee, Limetten, Minze, Tee, Kumquat", "Saisonal, bitte anfragen", "1,115", 40),
-  menuItem("D12", "Ananas-Eistee", "Signature Drinks", 8, "Ananas, Limetten, Minze, Tee, Kumquat", "Saisonal, bitte anfragen", "1,115", 40),
-  menuItem("D13", "Summer Lover", "Signature Drinks", 6, "Frische Limetten, Soda, Ingwer, Minze", "", "", 40),
-  menuItem("D14", "Great Passion Fruit", "Signature Drinks", 7, "Frische Limetten, Maracuja, Soda, Minze, Ingwer", "", "", 40),
-  menuItem("D15", "Beautiful Kumquats", "Signature Drinks", 7, "Frisch gepresste Kumquats", "", "", 40),
-  menuItem("D16", "Ökina Yume / Himbeerlimonade", "Signature Drinks", 6, "Himbeerlimonade mit Ingwer und Minze", "", "", 40)
-];
+addBlock("Seafood & Hanoi Specials", 11, `
+39|Bún Nem Frühlingsrollen|15|Reisnudeln mit Salat, Salatsauce, Schweinefleisch Frühlingsrollen, Erdnuss, Röstzwiebeln und Koriander||a,b,d,L,G,M,1,7
+40|Phở Love|15|Bandnudeln, Salat, Salatsauce, Erdnuss, Röstzwiebeln und Koriander|Ente, Tofu, Rind oder Schweinefleisch|a,b,d,L,G,M,1,7
+41|Tokyo Melt|17|Gebratene Udon Nudeln mit Butter Soja Sauce|Garnelen oder Rindfleisch|a,b,d,L,G,M,1,7
+42|Ocean Flame|25|Gebratener Tintenfisch mit Salat, Reis und Teriyaki Sauce||a,b,d,L,G,M,1,7
+43|Golden Udon|17|Udon Nudeln mit Thai Curry Sauce und Gemüse|Garnelen, Ente, Huhn, Schweinefleisch, Tofu oder knuspriges Hähnchen|a,b,d,L,G,M
+`);
+
+addBlock("Seafood & Hanoi Specials", 12, `
+45|Phở Trộn|15|Reisbandnudeln mit Salat, Sauce, Erdnuss, Röstzwiebeln, Koriander und Sojasprossen|Knusprige Ente, Garnelen oder knuspriges Hähnchen: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €|a,b,d,L,G,M,1,7
+`);
+
+addBlock("Curry & Teriyaki", 12, `
+46|Golden Peanut Curry|15|Erdnuss Curry auf frischem Gemüse und Reis oder Nudeln|Knusprige Ente, Garnelen oder knuspriges Hähnchen: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €|a,b,d,L,G,M,1,7
+47|Phở Curry|15|Auf frischem Gemüse und Nudeln|Knusprige Ente, Garnelen oder knuspriges Hähnchen: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €|a,b,d,L,G,M,1,7
+`);
+
+addBlock("Curry & Teriyaki", 13, `
+44|Panang Gold|15|Panang Curry auf frischem Gemüse und Reis|Knusprige Ente, Garnelen oder knuspriges Hähnchen: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €|a,b,d,L,G,M,1,7
+29|Beef Steak Teriyaki|15|Mit Reis, Salat, Teriyaki Sauce, Spargel und Kräuterseitlingen|Knusprige Ente, Garnelen oder knuspriges Hähnchen: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €|a,b,d,L,G,M,1,7
+30|Golden Massaman|15|Massaman Curry auf frischem Gemüse und Nudeln|Knusprige Ente, Garnelen oder knuspriges Hähnchen: 17 €; Huhn, Schweinefleisch oder Tofu: 15 €; Jakobsmuscheln: 23 €|a,b,d,L,G,M,1,7
+31|Tokyo Chicken|17|Mit Reis, Salat und Chicken Steak Teriyaki Sauce||a,b,d,L,G,M,1,7
+`);
+
+addBlock("Nigiri Sushi", 14, `
+313|Sakana Yakinuki Avocado|3.3|Flambierter Butterfisch, Avocado und Sauce
+314|Salmon Yakinuki Avocado|3.3|Flambierter Lachs, Avocado und Sauce
+315|Tuna Aburi Avocado|3.3|Flambierter Thunfisch, Avocado und Sauce
+316|Tuna Aburi Avocado|3|Flambierter Thunfisch, Avocado und Sauce
+317|Unagi Nigiri|3.5|Aal
+318|Inari Nigiri|2|Gebratene Tofutasche
+319|Tamago Nigiri|2|Ei
+320|Avocado Nigiri|3|Avocado
+321|Spargel Nigiri|3|Spargel
+322|Surimi Nigiri|2|Surimi
+`);
+
+addBlock("Nigiri Sushi", 15, `
+301|Sakana Nigiri|3|Butterfisch
+302|Sakana Avocado Nigiri|3.3|Butterfisch und Avocado
+303|Sakana Spargel Nigiri|3.3|Butterfisch und Spargel
+304|Lachs Rucola Nigiri|3.3|Lachs und Rucola
+305|Lachs Avocado Nigiri|3.3|Lachs und Avocado
+306|Tuna Rucola Nigiri|3.3|Thunfisch und Rucola
+307|Tuna Avocado Nigiri|3.3|Thunfisch und Avocado
+308|Lachs Spargel Nigiri|3.3|Lachs und Spargel
+309|Tuna Spargel Nigiri|3.3|Thunfisch und Spargel
+310|Salmon Nigiri|3|Lachs
+311|Maguro Nigiri|3|Thunfisch
+`);
+
+addBlock("Futo Maki", 16, `
+90|Futo Salmon|10|Frischkäse, Avocado, Gurken, Lachs, Rucola und Surimi|5 Stück
+91|Futo Tuna|10|Frischkäse, Avocado, Gurken, Thunfisch, Rucola und Surimi|5 Stück
+92|Futo Ebi|11|Frischkäse, Avocado, Gurken, Ei und Garnelen|5 Stück
+93|Futo Ebi Tempura|11|Gebackene Garnelen, Avocado, Surimi und Ei|5 Stück
+94|Spezial Futo|12|Thunfisch, Avocado, Gurken, Lachs, Rucola und Frischkäse|5 Stück
+95|Futo Deluxe|12|Hähnchenspieße, Avocado, Garnelen, Ei, Surimi und Frischkäse|5 Stück
+96|Futo Sakana|10|Butterfisch, Gurken, Spargel, Frischkäse und Surimi|5 Stück
+97|Futo Oktopus|13|Oktopus, Avocado, Garnelen, Ei, Surimi, Frischkäse und Spargel|5 Stück
+`);
+
+addBlock("Maki", 17, `
+65|Rucola Maki|4|Frischkäse|6 Stück
+603|Kräuterseitling Maki|4|Japanische Kräuterseitlinge|6 Stück
+66|Spargel Maki|4|Spargel|6 Stück
+604|Frittierter Spargel Maki|5|Frittierter Spargel|6 Stück
+601|Mango Maki|4|Mango|6 Stück
+605|Vegan Avocado Fry Maki|5|Frittierte Avocado|6 Stück
+602|Mozzarella Maki|4|Mozzarella|6 Stück
+611|Vegan Wakame Maki|4|Algensalat und Sesam|6 Stück
+`);
+
+addBlock("Maki", 18, `
+50|Sake Maki|5|Schottischer Lachs|6 Stück
+50a|Sake Spargel Maki|5|Lachs und Spargel|6 Stück
+51|Tekka Maki|5|Thunfisch|6 Stück
+51a|Tuna Spargel Maki|5|Thunfisch und Spargel|6 Stück
+52|Ebi Maki|5.5|Garnelen und Sesam|6 Stück
+53|Unagi Maki|5.5|Aal und Sesam|6 Stück
+54|Edo Maki|5|Lachs und Avocado|6 Stück
+54a|Butterfisch Avocado Maki|5|Butterfisch und Avocado|6 Stück
+54b|Butterfisch Rucola Maki|5|Butterfisch und Rucola|6 Stück
+56|Ebi Avocado Maki|5.5|Garnelen und Avocado|6 Stück
+`);
+
+addBlock("Maki", 19, `
+57|Gekochter Salmon Maki|5|Frischkäse, Rucola und Mayonnaise|6 Stück
+58|Gebratener Tuna Maki|5|Gurken, Frischkäse und Sesam|6 Stück
+59a|Rucola Lachs Maki|5|Frischkäse|6 Stück
+59b|Rucola Thunfisch Maki|5|Frischkäse|6 Stück
+59c|Sakana Maki|5|Butterfisch|6 Stück
+60|Avocado Maki|5|Avocado und Sesam|6 Stück
+61|Kappa Maki|4|Gurke|6 Stück
+62|Surimi Maki|4|Surimi und Sesam|6 Stück
+63|Tamago Maki|4|Ei|6 Stück
+64|Avocado Tofu Maki|5|Avocado und Tofu|6 Stück
+`);
+
+addBlock("Premium Rolls", 20, `
+67|Émeraude Kiss|12|Frischkäse, Gurken, Rucola und Lachs, mit Avocado umwickelt und Unagi Sauce|8 Stück
+67a|Ocean Seduction|13|Panierte Avocado, Gurken und Frischkäse, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal|8 Stück
+70|Saumon Éclat|10|Lachs, Gurken, Frischkäse und Avocado|8 Stück
+70a|Mango Temptation Roll|10|Frischkäse, Spargel, Gurken, Mango, Butterfisch und Sauce|8 Stück
+70b|Kings of Aubergine|13|Frischkäse, Avocado, gemischter Fisch und Spargel, mit Aubergine umwickelt und Unagi Sauce|8 Stück
+`);
+
+addBlock("Premium Rolls", 21, `
+71|Tuna Obsession|10|Thunfisch, Frischkäse, Gurken, Avocado und Tobiko|8 Stück
+75|Salmon Queen Roll|13|Gurken, Avocado und Frischkäse, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Oktopus|8 Stück
+75a|Mango Élite|13|Gurken, Spargel, Mango, Frischkäse und Butterfisch, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Oktopus|8 Stück
+75b|Scallop Affair|15|Spargel, Lachs, Frischkäse und Kräuterseitlinge, umwickelt mit Jakobsmuscheln|8 Stück
+75c|Ocean Prestige|14|Gurken, Frischkäse, Tintenfisch und Spargel, umwickelt mit Lachs und Thunfisch|8 Stück
+`);
+
+addBlock("Premium Rolls", 22, `
+76|Tuna Queen Roll|13|Avocado, Spargel, Frischkäse und Thunfisch, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Oktopus|8 Stück
+76a|Golden Melt Roll|12|Gurken, Mozzarella Tempura und Frischkäse, leicht scharf, umwickelt mit Lachs, Thunfisch, Butterfisch oder Garnelen|8 Stück
+76b|Black Pearl Roll|15|Avocado, Gurken, Frischkäse, Tobiko und Aal, umwickelt mit Lachs, Thunfisch oder Butterfisch|8 Stück
+78|California Dream Roll|12|Surimi, Frischkäse, Gurken und Avocado, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal|8 Stück
+84a|Crazy Ebi Tempural|15|Knusprige Garnelen und Avocado, umwickelt mit Lachs, Thunfisch oder Butterfisch|8 Stück
+`);
+
+addBlock("Premium Rolls", 23, `
+79|Fire Green Roll|11|Frischkäse, Rucola, Gurke und Mango, umwickelt mit Lachs, Thunfisch, Butterfisch oder Garnelen|8 Stück
+79a|Wild Ocean Roll|11|Frischkäse, japanische Kräuterseitlinge, Spargel und Avocado, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal|8 Stück
+79b|Gold Rush Roll|11|Frischkäse, Avocado und Spargel, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal|8 Stück
+79c|Crazy Deluxe|11|Zucchini, Gurke, Avocado und Frischkäse, umwickelt mit Lachs, Thunfisch, Butterfisch, Garnelen oder Aal|8 Stück
+84|The Boss Roll|11|Frischkäse, Mango, Avocado, Lachs, Thunfisch und Rucola|8 Stück
+`);
+
+addBlock("Premium Rolls", 24, `
+68|Scallop Passion|15|Avocado, Spargel, Jakobsmuscheln und Frischkäse, leicht scharf, umwickelt mit Garnelen|8 Stück
+72|California Surimi Roll|10|Surimi, Frischkäse, Avocado, Gurken und Tobiko|8 Stück
+72a|Onion Crush|11|Röstzwiebeln, Frischkäse, Thunfisch, Butterfisch und Avocado|8 Stück
+73|Yakitori Fever|12|Gurken, Avocado, Frischkäse, Hähnchenspieße und Unagi Sauce|8 Stück
+74c|Green Inferno|13|Panierter Lachs, Thunfisch oder Butterfisch mit Frischkäse und Spargel, mit Avocado umwickelt und Unagi Sauce|8 Stück
+`);
+
+addBlock("Premium Rolls", 25, `
+74|Ebi Tempura Roll|12|Knusprige Garnelen und Avocado|8 Stück
+74a|Yakinuki Ebi Tempura Roll|13|Knusprige Garnelen, Gurken und Frischkäse, umwickelt mit flambiertem Lachs, Thunfisch, Butterfisch, Garnelen oder Aal|8 Stück
+74b|Green Temptation|13|Knusprige Garnelen, Gurken und Käse, mit Avocado umwickelt und Teriyaki|8 Stück
+74d|Octopus Secret|15|Frischkäse, Avocado, Oktopus und Garnelen|8 Stück
+77|Unagi Tempura|14|Knusprige Garnelen und Avocado, mit Aal umwickelt und Teriyaki|8 Stück
+`);
+
+addBlock("Premium Rolls", 26, `
+77b|Flaming Dragon|15|Aal, Avocado, Unagi, Gurken und Spargel, umwickelt mit flambiertem Lachs, Thunfisch oder Butterfisch|8 Stück
+82|Chérie Passion|13|Garnelen, Frischkäse, Avocado, Rucola und Gurke|8 Stück
+82a|Ocean on Fire|15|Garnelen, Frischkäse, Avocado und Gurke, umwickelt mit flambiertem Lachs, Thunfisch, Butterfisch oder Aal|8 Stück
+83|Crispy Paradise|13|Avocado, knusprige Garnelen und gekochte Garnelen|8 Stück
+85|Secret Umami|10|Surimi, Avocado, Gurken, Frischkäse, Rucola und Garnelen|8 Stück
+`);
+
+addBlock("Premium Rolls", 27, `
+78a|Yakiniku California|13|Surimi, Frischkäse, Mango, Gurken und Avocado, umwickelt mit flambiertem Lachs, Thunfisch, Butterfisch oder Aal|8 Stück
+80|Belle Passion|10|Frischkäse, Rucola, Gurken und Lachs|8 Stück
+81|Mon Chéri Gold|10|Surimi, Avocado, Gurken und Rucola, umwickelt mit Tofu und Frischkäse|8 Stück
+86|Noir Desire|10|Avocado und knuspriger Surimi|8 Stück
+89|French Kiss Deluxe|10|Surimi, Gurken, Avocado, Rucola, Frischkäse und Unagi Sauce|8 Stück
+`);
+
+addBlock("Frittiertes Sushi", 28, `
+903|Poisson Mystère|13|Spargel, Lachs, Garnelen und Butterfisch|8 Stück
+907|Saumon Maki|7|Lachs|8 Stück
+908|Thon Maki|7|Thunfisch|8 Stück
+909|Maki Poisson Beurre|7|Butterfisch|8 Stück
+910|Saumon Belle Époque|11|Lachs, Avocado, Surimi, Frischkäse, Mayonnaise und Teriyaki|6 Stück
+911|Rouge Milano|11|Thunfisch, Avocado, Surimi, Frischkäse, Mayonnaise und Teriyaki|6 Stück
+912|Le Grand Crunch|13|Lachs, Avocado, Surimi, Frischkäse, Thunfisch, Garnelen, Mayonnaise und Teriyaki|6 Stück
+913|Sapore Divino|11|Frischkäse, Avocado, Spargel, Surimi, Butterfisch und Teriyaki|6 Stück
+`);
+
+addBlock("Frittiertes Sushi", 29, `
+914|Chicken Monte Carlo|13|Frischkäse, Avocado, Surimi und Hähnchen Teriyaki|6 Stück
+915|Scallops Mirage|12|Jakobsmuscheln, Avocado, Spargel, Surimi, Frischkäse und Wasabi Sauce|6 Stück
+916|Saumon Saint Tropez|12|Lachs, Avocado, Surimi, Garnelen, Frischkäse und Wasabi Sauce|6 Stück
+917|Tuna Rendezvous|12|Garnelen, Avocado, Surimi, Thunfisch, Frischkäse und Mango Sauce|6 Stück
+918|Duck à la Mode|13|Lachs, Ente, Avocado, Surimi, Garnelen, Frischkäse und Wasabi Sauce|6 Stück
+919|Golden Parisien|13|Lachs, Ente, Spargel, Surimi, Frischkäse und Mango Sauce|6 Stück
+920|Octopus Privé|13|Butterfisch, Oktopus, Avocado, Spargel, Frischkäse, Thunfisch und Mango Sauce|6 Stück
+921|Umami Monaco|13|Kräuterseitling, Lachs, Spargel, Ente, Frischkäse, Thunfisch, Nigiri und Mango Sauce|6 Stück
+`);
+
+addBlock("Sushi Platten", 30, `
+100|Maki Rendezvous|14|6 Sake Maki, 6 Avocado Tofu Maki und 6 Lachs Maki
+102|Minalo Imperiale|29|8 California Roll, 8 gekochter Lachs Roll und 8 Ebi Tempura Roll
+103|Saumon Dynasty|19|2 Sake Nigiri, 8 Salmon Roll und 6 Edo Maki
+104|Maguro Privé|20|2 Maguro Nigiri, 6 Tekka Avocado Maki und 8 Tuna Roll
+105|Grande Appetio|29|2 Inari, 2 Ebi Nigiri, 6 Avocado Maki, 6 Lachs Maki und 8 Ebi Tempura Roll
+106|Notte di Lusso|45|4 Nigiri, 12 Maki, 8 Spargel Roll, 8 Ebi Tempura Roll und 5 Futo Maki
+107|La Dolce Notte|65|8 Salmon Queen Roll, 5 Futo Maki, 12 Crunchy Roll, 8 Tuna Spargel Roll, 12 gemischte Maki und 3 Nigiri
+`);
+
+addBlock("Sushi Platten", 31, `
+502|Vizio Italiano|25|8 Surimi Inari Roll, 8 Salmon Roll und 4 Sake Nigiri
+504|Salmon L'Aventure|51|6 Edo Maki, 6 Sake Nigiri, 8 Surimi Inari Roll, 8 Salmon Roll, 5 Futo Maki und 6 Sashimi
+505|Legend Reserve|42|4 Nigiri, 5 Futo Maki, 8 Inside Out Roll, 6 Crunchy Roll und 12 Maki
+506|Crispy Enchanté|38|6 Crunchy Roll, 6 gekochter Salmon Maki, 6 Avocado Maki, 8 Ebi Tempura Roll und 4 Nigiri
+511|Umami Nocturne|57|12 Crunchy Roll, 12 Maki, 16 Inside Out Roll und 5 Futo Maki
+512|Osaka Délice|47|8 Salmon Spargel Roll, 8 Salmon Roll, 5 Futo Maki, 2 Ebi Nigiri, 2 Maguro Nigiri und 4 Sake Nigiri
+513|Saumon de Kyoto|41|8 Salmon Queen Roll, 12 Maki, 8 Salmon Garnelen Roll, 3 Salmon Nigiri und 3 Tuna
+`);
+
+addBlock("Sushi Platten", 32, `
+110|Ocean Delizia|41|8 Tuna Spargel Roll, 8 Sakana Mango Roll, 8 Surimi Inari Roll und 8 Salmon Queen Roll
+111|Solo Délice|19|Empfehlung des Sushimeisters. Jede Bestellung wird unterschiedlich zusammengestellt.
+112|Duo Delizioso|50|Empfehlung des Sushimeisters. Jede Bestellung wird unterschiedlich zusammengestellt, mit oder ohne Sashimi.
+507|Fresh Élite|38|3 Sake Nigiri, 2 Ebi Nigiri, 3 Maguro Nigiri, 6 Avocado Maki, 8 Tuna Roll und 6 Edo Maki
+508|Petit Péché|35|6 gekochter Salmon Maki, 6 Sashimi, 4 Nigiri, 8 California Roll und 8 Ebi Tempura Roll
+509|Tokyo Soirée|37|16 Inside Out Roll, 6 Crunchy Roll und 5 Futo Maki
+510|Bouchée Folle|39|6 Maki, 2 Nigiri, 6 Crunchy Roll, 8 Inside Out Roll und 5 Futo Maki
+`);
+
+addBlock("Sushi Platten", 33, `
+514|Duo de la Mer|25|4 Salmon Nigiri, 2 Maguro, 6 Tekka Maki, 4 Salmon Roll und 4 California Roll
+515|Salmon Banquet|19|6 Sake Nigiri, 4 Salmon Roll und 4 California Roll
+516|Ocean Playboy|48|6 Crunchy Roll, 8 Salmon Roll, 8 California Aubergine Roll, 2 Maguro Nigiri, 2 Ebi Nigiri und 2 Salmon Nigiri
+901|Golden Crave|35|8 Surimi Inari, 8 Ebi Tempura, 6 Avocado Maki, 6 Crunchy Roll und 2 Ebi Nigiri
+`);
+
+addBlock("Vegan & Vegetarisch", 34, `
+615|Seetangsalat|6|Seaweed Salad
+616|Zitronengrassuppe mit Tofu|6
+617|Kokossuppe mit Tofu|6
+618|Japanese Cheese Sticks|4|Frittiert
+619|Aubergine Teriyaki|6
+620|Vegetarische Frühlingsrollen|5||6 Stück
+621|Yasai Tempura|6|Frittiertes Gemüse und Käse
+622|Gyoza vegetarisch|6||4 Stück
+`);
+
+addBlock("Vegan & Vegetarisch", 35, `
+623|Bún Trộn|15|Reisnudeln, Salat, Sauce, Tofu, Erdnuss, Röstzwiebeln und Koriander
+624|Vegetarisch Hokkaido Curry|15|Frisches Gemüse und Reis mit Tofu
+625|Udon Thai Curry|15|Udon Nudeln, Thai Curry Sauce, Gemüse und Tofu
+626|Reisnudeln Erdnusssauce|15|Reisnudeln, Erdnusssauce, Salat und Tofu
+627|Phở Salat Tofu|15|Bandnudeln, Salat, hausgemachte Sauce und Erdnuss
+628|Phở Trộn vegetarisch|15|Reisbandnudeln, Salat, Sauce, Tofu, Erdnuss, Röstzwiebeln und Koriander
+629|Mango Tofu Garden|15|Mango Sauce, Reis, Gemüse und Tofu
+`);
+
+addBlock("Vegan & Vegetarisch", 36, `
+600|Spargel Maki|4|Spargel|6 Stück
+601|Mango Maki|4|Mango|6 Stück
+602|Mozzarella Maki|4|Mozzarella|6 Stück
+603|Kräuterseitling Maki|4|Japanische Kräuterseitlinge|6 Stück
+604|Frittierter Spargel Maki|4|Frittierter Spargel|6 Stück
+605|Vegan Avocado Fry Maki|4|Frittierte Avocado|6 Stück
+606|Vegan Avocado Maki|4|Avocado|6 Stück
+607|Vegetarisch Kappa Maki|4|Gurken, Frischkäse und Sesam|6 Stück
+608|Vegetarisch Tamago Maki|4|Ei und Sesam|6 Stück
+609|Vegan Avocado Tofu Maki|4|Avocado und Tofu|6 Stück
+610|Vegetarische Rucola Maki|4|Rucola und Frischkäse|6 Stück
+611|Vegan Wakame Maki|4|Algensalat und Sesam|6 Stück
+`);
+
+addBlock("Vegan & Vegetarisch", 37, `
+660|Knusprig Eier Maki|6|Knusprige Maki mit Ei|8 Stück
+661|Knusprig Spargel Maki|6|Knusprige Maki mit Spargel|8 Stück
+662|Knusprig Avocado Maki|6|Knusprige Maki mit Avocado|8 Stück
+663|Vegan Crunchy Roll|12|Vegane Crunchy Roll|6 Stück
+664|Vegetarisch Crunchy Roll|12|Vegetarische Crunchy Roll|6 Stück
+690|Vegan Futo Maki|9|Avocado, Gurken, Rucola, Spargel und Tofu|5 Stück
+691|Vegetarisch Futo Maki|9|Käse, Avocado, Gurken, Ei, Rucola und Spargel|5 Stück
+692|Vegetarisch Futo Avocado Maki|9|Frischkäse, Avocado, Gurken, Ei, Rucola und japanische Kräuterseitlinge|5 Stück
+693|Vegetarisch Futo Spargel|9|Frischkäse, Avocado, Gurken, Rucola, Spargel und Tofu|5 Stück
+`);
+
+addBlock("Spezial Rolls", 38, `
+630|Mango Queen|10|Mango, Gurken, Frischkäse und Avocado|Vegan oder vegetarisch
+631|Tofu Onion|10|Tofu, Frischkäse, rote Zwiebel, Spargel und Avocado|Vegan oder vegetarisch
+632|Yasai Roll|11|Japanische Kräuterseitlinge, mit Avocado und Panko Butter umwickelt|Vegan oder vegetarisch
+633|Geisha Roll|11|Panierte Zucchini, Frischkäse und Spargel, mit Avocado, Tofu und Süßkartoffel umwickelt|Vegan oder vegetarisch
+634|Yasai Crazy|10|Kräuterseitlinge, Spargel, Gurken und Frischkäse, mit Avocado und Tofu umwickelt|Vegan oder vegetarisch
+635|Mozzarella Lover Roll|10|Frischkäse, Gurken, Mozzarella und Avocado|Vegan oder vegetarisch
+`);
+
+addBlock("Spezial Rolls", 39, `
+636|Panko Butter Bombe Roll|11|Käse, Panko Butter, Avocado, Spargel und Gurken|Vegan oder vegetarisch
+637|Aubergine Bombe Roll|10|Knusprige Aubergine, Frischkäse, Gurken und Spargel|Vegan oder vegetarisch
+638|Avocado Queen Roll|10|Frischkäse, Avocado, Gurken, Rucola, Tofu und Ei|Vegan oder vegetarisch
+639|Spargel Roll|10|Frischkäse, Avocado, Gurken, Rucola, Tofu und Spargel|Vegan oder vegetarisch
+640|Avocado Lover Roll|10|Knusprige Avocado, Frischkäse und Gurken|Vegan oder vegetarisch
+641|Sweet Sakura Roll|11|Avocado, Spargel, Rucola, Frischkäse und Süßkartoffel|Vegan oder vegetarisch
+642|Tamago Lucky Roll|10|Gurken, Avocado, Rucola und Frischkäse|Vegan oder vegetarisch
+`);
+
+addBlock("Vegan & Vegetarisch", 40, `
+670|Zen Maki|13|18 Maki, vegan oder vegetarisch
+671|Plant Paradise|35|16 Inside Out Roll, 12 Maki und 5 Futo Maki
+672|Monte Carlo Végétal|19|16 Inside Out Roll und Seetangsalat
+673|Osaka Végétal|49|16 Spezial Roll, 12 Maki und 12 Crunchy Roll
+674|Green Heaven|29|Seetangsalat, 12 Maki, Crunchy Roll und 8 Spezial Roll
+675|Buddha Green|29|24 Inside Out Roll und Seetangsalat
+676|Tokyo Green Party|55|24 Spezial Roll, 5 Futo Maki, 18 gemischte Maki und Crunchy Roll
+677|Kyoto Buddha|26|16 Inside Out Roll und Crunchy Roll
+678|Buddha Yasai|27|12 Maki, 16 Inside Out Roll und Seetangsalat
+679|Yasai Signature|43|Crunchy Roll, 12 Maki, 16 Spezial Roll und 5 Futo Maki
+`);
