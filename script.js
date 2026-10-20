@@ -90,6 +90,40 @@
   // ==========================================================================
   // Cart State Management
   // ==========================================================================
+  const getChoiceGroups = (dish) => Array.isArray(dish?.choiceGroups) ? dish.choiceGroups : [];
+
+  const getSelectedOption = (dish, selection) => {
+    const choiceGroup = getChoiceGroups(dish).find((entry) => entry.label === selection.group);
+    return choiceGroup?.options.find((option) => option.label === selection.option) || null;
+  };
+
+  const hasCompleteSelections = (dish, selections) => {
+    const choiceGroups = getChoiceGroups(dish);
+    if (!choiceGroups.length) return true;
+    if (!Array.isArray(selections) || selections.length !== choiceGroups.length) return false;
+    return choiceGroups.every((choiceGroup) => selections.some((selection) =>
+      selection.group === choiceGroup.label && choiceGroup.options.some((option) => option.label === selection.option)
+    ));
+  };
+
+  const getConfiguredPrice = (dish, selections = []) => {
+    let price = dish?.price || 0;
+    selections.forEach((selection) => {
+      const option = getSelectedOption(dish, selection);
+      if (Number.isFinite(option?.price)) price = option.price;
+    });
+    return price;
+  };
+
+  const cartEntryKey = (entry) => [
+    entry.uid,
+    ...(entry.selections || []).map((selection) => `${selection.group}=${selection.option}`)
+  ].map(encodeURIComponent).join("::");
+
+  const formatSelections = (entry) => (entry.selections || [])
+    .map((selection) => `${selection.group}: ${selection.option}`)
+    .join(" · ");
+
   let cart = [];
   try {
     cart = JSON.parse(localStorage.getItem("hannayuki-cart") || "[]");
@@ -107,15 +141,21 @@
   const getCartItem = (entry) =>
     window.MENU_DATA ? window.MENU_DATA.find((item) => item.uid === entry.uid) : null;
 
-  const getCartQuantity = (uid) => {
-    const entry = cart.find((item) => item.uid === uid);
-    return entry ? entry.quantity : 0;
-  };
+  // Old carts did not store required dish choices. Keep valid fixed dishes and
+  // discard only entries that cannot be ordered unambiguously anymore.
+  cart = cart.filter((entry) => {
+    const dish = getCartItem(entry);
+    return dish && hasCompleteSelections(dish, entry.selections);
+  });
+
+  const getCartQuantity = (uid) => cart
+    .filter((entry) => entry.uid === uid)
+    .reduce((sum, entry) => sum + entry.quantity, 0);
 
   const cartTotalSum = () =>
     cart.reduce((sum, entry) => {
       const item = getCartItem(entry);
-      return sum + (item?.price || 0) * entry.quantity;
+      return sum + getConfiguredPrice(item, entry.selections) * entry.quantity;
     }, 0);
 
   const cartTotalCount = () =>
@@ -247,6 +287,8 @@
     const card = document.createElement("article");
     card.className = "menu-card";
     const qty = getCartQuantity(item.uid);
+    const choiceGroups = getChoiceGroups(item);
+    const hasChoices = choiceGroups.length > 0;
     if (qty > 0) card.classList.add("is-in-cart");
 
     // Price markup
@@ -254,7 +296,14 @@
     if (item.price === null) {
       priceHtml = `<span class="menu-card-price unpriced">Preis im PDF<br>nicht angegeben</span>`;
     } else {
-      priceHtml = `<span class="menu-card-price">${euro.format(item.price)}</span>`;
+      const configuredPrices = choiceGroups
+        .flatMap((choiceGroup) => choiceGroup.options)
+        .filter((option) => Number.isFinite(option.price))
+        .map((option) => option.price);
+      const minimumPrice = configuredPrices.length ? Math.min(...configuredPrices) : item.price;
+      const maximumPrice = configuredPrices.length ? Math.max(...configuredPrices) : item.price;
+      const pricePrefix = minimumPrice !== maximumPrice ? "ab " : "";
+      priceHtml = `<span class="menu-card-price" data-card-price>${pricePrefix}${euro.format(minimumPrice)}</span>`;
     }
 
     // Meta chips
@@ -263,10 +312,41 @@
     if (item.allergens) metaParts.push(`<span class="meta-chip">⚠️ Allergene: ${escapeHtml(item.allergens)}</span>`);
     if (item.note) metaParts.push(`<span class="meta-chip">ℹ️ ${escapeHtml(item.note)}</span>`);
 
+    const choicesHtml = choiceGroups.length ? `
+      <div class="menu-card-choices" aria-label="Auswahl für ${escapeHtml(item.name)}">
+        ${choiceGroups.map((choiceGroup, groupIndex) => `
+          <label class="dish-choice-label" for="choice-${escapeHtml(item.uid)}-${groupIndex}">
+            <span>${escapeHtml(choiceGroup.label)} <strong aria-hidden="true">*</strong></span>
+            <select
+              id="choice-${escapeHtml(item.uid)}-${groupIndex}"
+              class="dish-choice-select"
+              data-choice-group-index="${groupIndex}"
+              required
+            >
+              <option value="">Bitte wählen</option>
+              ${choiceGroup.options.map((option, optionIndex) => {
+                const priceSuffix = Number.isFinite(option.price) ? ` – ${euro.format(option.price)}` : "";
+                return `<option value="${optionIndex}">${escapeHtml(option.label)}${escapeHtml(priceSuffix)}</option>`;
+              }).join("")}
+            </select>
+          </label>
+        `).join("")}
+      </div>
+    ` : "";
+
     // Actions area: Add button or Quantity stepper
     let actionAreaHtml = "";
     if (item.price === null) {
       actionAreaHtml = `<span class="unpriced-ask-btn">Auf Anfrage bestellbar</span>`;
+    } else if (hasChoices) {
+      actionAreaHtml = `
+        <div class="configurable-add-wrap">
+          ${qty > 0 ? `<span class="configured-cart-count">${qty} im Warenkorb</span>` : ""}
+          <button class="add-to-cart-btn" type="button" data-add-uid="${escapeHtml(item.uid)}">
+            <span>Auswahl hinzufügen</span>
+          </button>
+        </div>
+      `;
     } else if (qty > 0) {
       actionAreaHtml = `
         <div class="card-stepper" data-dish-uid="${escapeHtml(item.uid)}">
@@ -294,6 +374,7 @@
         </div>
         ${item.description ? `<p class="menu-card-desc">${escapeHtml(item.description)}</p>` : ""}
         ${metaParts.length ? `<div class="menu-card-meta">${metaParts.join("")}</div>` : ""}
+        ${choicesHtml}
       </div>
       <div class="menu-card-actions">
         <span class="menu-category-tag">${escapeHtml(item.category)}</span>
@@ -446,18 +527,20 @@
   });
 
   // Add dish to cart
-  const addToCart = (uid, qtyDelta = 1) => {
+  const addToCart = (uid, qtyDelta = 1, selections = []) => {
     const dish = window.MENU_DATA?.find((item) => item.uid === uid);
-    if (!dish || dish.price === null) return;
+    if (!dish || dish.price === null || !hasCompleteSelections(dish, selections)) return;
 
-    const existing = cart.find((item) => item.uid === uid);
+    const nextEntry = { uid, selections, quantity: 0 };
+    const key = cartEntryKey(nextEntry);
+    const existing = cart.find((item) => cartEntryKey(item) === key);
     if (existing) {
       existing.quantity += qtyDelta;
       if (existing.quantity <= 0) {
-        cart = cart.filter((item) => item.uid !== uid);
+        cart = cart.filter((item) => cartEntryKey(item) !== key);
       }
     } else if (qtyDelta > 0) {
-      cart.push({ uid, quantity: qtyDelta });
+      cart.push({ uid, selections, quantity: qtyDelta });
     }
 
     saveCart();
@@ -467,20 +550,20 @@
   };
 
   // Modify quantity from cart
-  const updateCartQuantity = (uid, delta) => {
-    const existing = cart.find((item) => item.uid === uid);
+  const updateCartQuantity = (key, delta) => {
+    const existing = cart.find((item) => cartEntryKey(item) === key);
     if (!existing) return;
     existing.quantity += delta;
     if (existing.quantity <= 0) {
-      cart = cart.filter((item) => item.uid !== uid);
+      cart = cart.filter((item) => cartEntryKey(item) !== key);
     }
     saveCart();
     renderCart();
     renderMenu();
   };
 
-  const removeCartItem = (uid) => {
-    cart = cart.filter((item) => item.uid !== uid);
+  const removeCartItem = (key) => {
+    cart = cart.filter((item) => cartEntryKey(item) !== key);
     saveCart();
     renderCart();
     renderMenu();
@@ -503,10 +586,36 @@
 
   // Delegate menu click events for + In den Warenkorb and card steppers
   if (menuGrid) {
+    const getSelectionsFromCard = (card, dish, requireComplete = true) => {
+      const selections = [];
+      for (let groupIndex = 0; groupIndex < getChoiceGroups(dish).length; groupIndex += 1) {
+        const choiceGroup = dish.choiceGroups[groupIndex];
+        const select = card.querySelector(`[data-choice-group-index="${groupIndex}"]`);
+        const option = select?.value === "" ? null : choiceGroup.options[Number(select?.value)];
+        select?.classList.toggle("is-invalid", !option);
+        if (!option) {
+          if (requireComplete) {
+            select?.focus();
+            select?.reportValidity();
+          }
+          return null;
+        }
+        selections.push({ group: choiceGroup.label, option: option.label });
+      }
+      return selections;
+    };
+
     menuGrid.addEventListener("click", (e) => {
       const addBtn = e.target.closest("[data-add-uid]");
       if (addBtn) {
-        addToCart(addBtn.dataset.addUid, 1);
+        const dish = window.MENU_DATA?.find((item) => item.uid === addBtn.dataset.addUid);
+        const card = addBtn.closest(".menu-card");
+        const selections = getSelectionsFromCard(card, dish, true);
+        if (getChoiceGroups(dish).length && !selections) {
+          showToast("Bitte treffen Sie zuerst alle Auswahlen.");
+          return;
+        }
+        addToCart(addBtn.dataset.addUid, 1, selections || []);
         return;
       }
 
@@ -524,12 +633,30 @@
         return;
       }
     });
+
+    menuGrid.addEventListener("change", (e) => {
+      const select = e.target.closest(".dish-choice-select");
+      if (!select) return;
+      select.classList.remove("is-invalid");
+
+      const card = select.closest(".menu-card");
+      const addBtn = card?.querySelector("[data-add-uid]");
+      const dish = window.MENU_DATA?.find((item) => item.uid === addBtn?.dataset.addUid);
+      const price = card?.querySelector("[data-card-price]");
+      if (!dish || !price) return;
+
+      const selections = getSelectionsFromCard(card, dish, false);
+      if (selections) price.textContent = euro.format(getConfiguredPrice(dish, selections));
+    });
   }
 
   // Render Cart Drawer Contents
   const renderCart = () => {
     // Filter out invalid items
-    cart = cart.filter((entry) => getCartItem(entry));
+    cart = cart.filter((entry) => {
+      const dish = getCartItem(entry);
+      return dish && hasCompleteSelections(dish, entry.selections);
+    });
     if (!cartItems) return;
     cartItems.replaceChildren();
 
@@ -545,21 +672,25 @@
     } else {
       cart.forEach((entry) => {
         const dish = getCartItem(entry);
+        const key = cartEntryKey(entry);
+        const unitPrice = getConfiguredPrice(dish, entry.selections);
+        const selectionText = formatSelections(entry);
         const itemRow = document.createElement("div");
         itemRow.className = "cart-item";
         itemRow.innerHTML = `
           <div class="cart-item-title">
             <h4><span>#${escapeHtml(dish.code)}</span>${escapeHtml(dish.name)}</h4>
-            <div class="cart-item-unit-price">${euro.format(dish.price)} je Portion</div>
+            ${selectionText ? `<div class="cart-item-selections">${escapeHtml(selectionText)}</div>` : ""}
+            <div class="cart-item-unit-price">${euro.format(unitPrice)} je Portion</div>
           </div>
-          <div class="cart-item-total">${euro.format(dish.price * entry.quantity)}</div>
+          <div class="cart-item-total">${euro.format(unitPrice * entry.quantity)}</div>
           <div class="cart-item-controls">
             <div class="cart-stepper">
-              <button type="button" data-cart-minus="${escapeHtml(entry.uid)}" aria-label="Menge verringern">&minus;</button>
+              <button type="button" data-cart-minus="${escapeHtml(key)}" aria-label="Menge verringern">&minus;</button>
               <span>${entry.quantity}</span>
-              <button type="button" data-cart-plus="${escapeHtml(entry.uid)}" aria-label="Menge erhöhen">+</button>
+              <button type="button" data-cart-plus="${escapeHtml(key)}" aria-label="Menge erhöhen">+</button>
             </div>
-            <button type="button" class="cart-remove-btn" data-cart-remove="${escapeHtml(entry.uid)}">
+            <button type="button" class="cart-remove-btn" data-cart-remove="${escapeHtml(key)}">
               Entfernen ✕
             </button>
           </div>
@@ -650,9 +781,11 @@
     cart.forEach((entry) => {
       const dish = getCartItem(entry);
       if (dish) {
+        const unitPrice = getConfiguredPrice(dish, entry.selections);
+        const selectionText = formatSelections(entry);
         lines.push(
-          `• ${entry.quantity}x [${dish.code}] ${dish.name} (${euro.format(dish.price)}) = ${euro.format(
-            dish.price * entry.quantity
+          `• ${entry.quantity}x [${dish.code}] ${dish.name}${selectionText ? ` — ${selectionText}` : ""} (${euro.format(unitPrice)}) = ${euro.format(
+            unitPrice * entry.quantity
           )}`
         );
       }

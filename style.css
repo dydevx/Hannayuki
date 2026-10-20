@@ -1394,6 +1394,56 @@ p {
   border: 1px solid var(--border-subtle);
 }
 
+.menu-card-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.7rem;
+  margin: 0.9rem 0 1rem;
+  padding: 0.85rem;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: var(--radius-sm);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.dish-choice-label {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.dish-choice-label > span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.dish-choice-label strong {
+  color: var(--crimson);
+}
+
+.dish-choice-select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.55rem 2rem 0.55rem 0.65rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--bg-surface-elevated);
+  color: #fff;
+  font: 600 0.78rem/1.2 var(--sans);
+  cursor: pointer;
+}
+
+.dish-choice-select:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+
+.dish-choice-select.is-invalid {
+  border-color: var(--crimson);
+  box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.18);
+}
+
 /* Card Add to Cart Action Area */
 .menu-card-actions {
   display: flex;
@@ -1421,6 +1471,19 @@ p {
   border-color: var(--gold-light);
   color: #0f1115;
   box-shadow: 0 2px 12px rgba(212, 175, 55, 0.35);
+}
+
+.configurable-add-wrap {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.configured-cart-count {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gold-light);
 }
 
 /* Interactive Stepper when item is in cart */
@@ -2532,6 +2595,12 @@ dialog:not([open]) {
   font-size: 0.75rem;
   color: var(--text-dim);
   margin-top: 2px;
+}
+.cart-item-selections {
+  margin-top: 0.3rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--gold-light);
 }
 .cart-item-total {
   font-family: var(--serif);

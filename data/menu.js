@@ -428,3 +428,127 @@ addBlock("Vegan & Vegetarisch", 40, `
 678|Buddha Yasai|27|12 Maki, 16 Inside Out Roll und Seetangsalat
 679|Yasai Signature|43|Crunchy Roll, 12 Maki, 16 Spezial Roll und 5 Futo Maki
 `);
+
+// Bestellbare Varianten aus der gedruckten Karte. Diese Daten werden getrennt
+// von den Beschreibungstexten gepflegt, damit Auswahl, Preis und WhatsApp-
+// Bestellung immer dieselbe Variante verwenden.
+const choices = (...labels) => labels.map((label) => ({ label }));
+const pricedChoices = (...entries) => entries.map(([label, price]) => ({ label, price }));
+const group = (label, options) => ({ label, options });
+
+const standardMainDishChoices = pricedChoices(
+  ["Knusprige Ente", 17],
+  ["Garnelen", 17],
+  ["Knuspriges Hähnchen", 17],
+  ["Huhn", 15],
+  ["Schweinefleisch", 15],
+  ["Tofu", 15],
+  ["Jakobsmuscheln", 23]
+);
+
+const fiveFishChoices = choices("Lachs", "Thunfisch", "Butterfisch", "Garnelen", "Aal");
+const fiveFishOctopusChoices = choices("Lachs", "Thunfisch", "Butterfisch", "Garnelen", "Oktopus");
+const fourFishChoices = choices("Lachs", "Thunfisch", "Butterfisch", "Garnelen");
+const threeFishChoices = choices("Lachs", "Thunfisch", "Butterfisch");
+
+const menuChoiceGroups = {
+  SD1: [group("Getränk", choices("Cola", "Cola Zero", "Fanta", "Sprite", "Mezzo Mix", "Ginger Ale"))],
+  SD2: [group("Wasser", choices("Still", "Sprudelnd"))],
+  SD3: [group("Wasser", choices("Still", "Sprudelnd"))],
+  G6: [group("Variante", choices("Saft", "Schorle"))],
+  G8: [group("Variante", choices("Saft", "Schorle"))],
+  G9: [group("Variante", choices("Saft", "Schorle"))],
+  G14: [group("Variante", choices("Saft", "Schorle"))],
+  SAKE: [group("Temperatur", choices("Warm", "Kalt"))],
+
+  2: [group("Einlage", choices("Fisch", "Garnelen", "Huhn", "Ente", "Tofu"))],
+  3: [group("Füllung", pricedChoices(
+    ["Ente", 6],
+    ["Huhn", 7],
+    ["Tofu", 7],
+    ["Garnelen", 9],
+    ["Roher Lachs", 11],
+    ["Roher Thunfisch", 11],
+    ["Roher Butterfisch", 11]
+  ))],
+  4: [group("Einlage", choices("Fisch", "Garnelen", "Huhn", "Ente", "Tofu"))],
+  7: [group("Variante", pricedChoices(
+    ["Nur Seetangsalat", 5],
+    ["Mit Mango", 8],
+    ["Mit Garnelen und Mango", 11]
+  ))],
+  13: [group("Füllung", choices("Huhn", "Vegetarisch"))],
+  15: [group("Fisch", choices("Lachs", "Thunfisch", "Butterfisch", "Gemischt"))],
+
+  P1: [group("Fleisch", pricedChoices(["Huhn", 15], ["Rind", 17]))],
+  22: [group("Protein", pricedChoices(["Ente", 17], ["Rind", 17], ["Lachs", 19]))],
+  23: [group("Protein", standardMainDishChoices)],
+  25: [group("Protein", pricedChoices(
+    ["Knuspriges Hähnchen", 17],
+    ["Ente", 19],
+    ["Rind", 19],
+    ["Huhn", 17],
+    ["Tofu", 17],
+    ["Schweinefleisch", 17],
+    ["Jakobsmuscheln", 23]
+  ))],
+  26: [group("Protein", pricedChoices(
+    ["Ente", 17],
+    ["Garnelen", 17],
+    ["Knuspriges Hähnchen", 17],
+    ["Huhn", 15],
+    ["Tofu", 15],
+    ["Schweinefleisch", 15]
+  ))],
+  38: [group("Protein", choices("Huhn", "Schweinefleisch", "Tofu", "Ente", "Rind"))],
+  40: [group("Protein", choices("Ente", "Tofu", "Rind", "Schweinefleisch"))],
+  41: [group("Protein", choices("Garnelen", "Rindfleisch"))],
+  43: [group("Protein", choices("Garnelen", "Ente", "Huhn", "Schweinefleisch", "Tofu", "Knuspriges Hähnchen"))],
+  45: [group("Protein", standardMainDishChoices)],
+  46: [
+    group("Protein", standardMainDishChoices),
+    group("Beilage", choices("Reis", "Nudeln"))
+  ],
+  47: [group("Protein", standardMainDishChoices)],
+  44: [group("Protein", standardMainDishChoices)],
+  29: [group("Protein", standardMainDishChoices)],
+  30: [group("Protein", standardMainDishChoices)],
+
+  "67a": [group("Ummantelung", fiveFishChoices)],
+  75: [group("Ummantelung", fiveFishOctopusChoices)],
+  "75a": [group("Ummantelung", fiveFishOctopusChoices)],
+  76: [group("Ummantelung", fiveFishOctopusChoices)],
+  "76a": [group("Ummantelung", fourFishChoices)],
+  "76b": [group("Ummantelung", threeFishChoices)],
+  78: [group("Ummantelung", fiveFishChoices)],
+  "84a": [group("Ummantelung", threeFishChoices)],
+  79: [group("Ummantelung", fourFishChoices)],
+  "79a": [group("Ummantelung", fiveFishChoices)],
+  "79b": [group("Ummantelung", fiveFishChoices)],
+  "79c": [group("Ummantelung", fiveFishChoices)],
+  "74c": [group("Panierter Fisch", threeFishChoices)],
+  "74a": [group("Flambierte Ummantelung", fiveFishChoices)],
+  "77b": [group("Flambierte Ummantelung", threeFishChoices)],
+  "82a": [group("Flambierte Ummantelung", choices("Lachs", "Thunfisch", "Butterfisch", "Aal"))],
+  "78a": [group("Flambierte Ummantelung", choices("Lachs", "Thunfisch", "Butterfisch", "Aal"))],
+
+  112: [group("Sashimi", choices("Mit Sashimi", "Ohne Sashimi"))],
+  630: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  631: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  632: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  633: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  634: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  635: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  636: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  637: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  638: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  639: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  640: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  641: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  642: [group("Zubereitung", choices("Vegan", "Vegetarisch"))],
+  670: [group("Zubereitung", choices("Vegan", "Vegetarisch"))]
+};
+
+window.MENU_DATA.forEach((item) => {
+  item.choiceGroups = menuChoiceGroups[item.code] || [];
+});
