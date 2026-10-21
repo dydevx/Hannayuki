@@ -121,6 +121,22 @@ button, input, textarea, select {
   color: inherit;
 }
 
+/* Keep native select popups legible inside the site's dark theme. */
+select {
+  color-scheme: dark;
+}
+
+select option,
+select optgroup {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-main);
+}
+
+select option:checked {
+  background-color: var(--gold-dark);
+  color: var(--bg-deep);
+}
+
 button {
   cursor: pointer;
   border: none;
