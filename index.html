@@ -797,7 +797,7 @@
     </div>
 
     <div class="cart-body">
-      <!-- Order Type Selector (Abholung / Vor Ort / Lieferung) -->
+      <!-- Order Type Selector (Abholung / Vor Ort) -->
       <div class="order-type-picker">
         <label class="order-type-label">Bestellart wählen:</label>
         <div class="order-type-options" role="radiogroup" aria-label="Bestellart">
@@ -810,11 +810,6 @@
             <span class="type-icon">🥢</span>
             <strong>Vor Ort</strong>
             <small>Am Tisch speisen</small>
-          </button>
-          <button type="button" class="order-type-btn" data-type="Lieferung">
-            <span class="type-icon">🛵</span>
-            <strong>Lieferung</strong>
-            <small>Auf Anfrage</small>
           </button>
         </div>
       </div>
@@ -842,7 +837,7 @@
         </div>
       </div>
 
-      <!-- Customer & Delivery Information Form -->
+      <!-- Customer Information Form -->
       <form id="orderForm" class="order-checkout-form" novalidate>
         <div class="checkout-heading">
           <h3>Kontaktdaten für WhatsApp</h3>
@@ -865,13 +860,6 @@
         <div class="field" id="fieldTableNumber" hidden>
           <label for="orderTableNumber">Tischnummer (falls bekannt)</label>
           <input id="orderTableNumber" name="table" type="text" placeholder="z. B. Tisch 4">
-          <small></small>
-        </div>
-
-        <!-- Dynamic field: Delivery address if Lieferung is selected -->
-        <div class="field" id="fieldAddress" hidden>
-          <label for="orderAddress">Lieferadresse *</label>
-          <input id="orderAddress" name="address" type="text" placeholder="Straße, Hausnr., PLZ, Stadt">
           <small></small>
         </div>
 

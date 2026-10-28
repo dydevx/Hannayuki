@@ -132,7 +132,7 @@
     cart = [];
   }
 
-  let selectedOrderType = "Abholung"; // 'Abholung' | 'Vor Ort' | 'Lieferung'
+  let selectedOrderType = "Abholung"; // 'Abholung' | 'Vor Ort'
 
   const saveCart = () => {
     localStorage.setItem("hannayuki-cart", JSON.stringify(cart));
@@ -509,7 +509,6 @@
   // Order Type Selector Buttons inside Cart
   const orderTypeButtons = $$(".order-type-btn");
   const fieldTableNumber = $("#fieldTableNumber");
-  const fieldAddress = $("#fieldAddress");
 
   const setOrderType = (type) => {
     selectedOrderType = type;
@@ -517,7 +516,6 @@
       btn.classList.toggle("active", btn.dataset.type === type);
     });
     if (fieldTableNumber) fieldTableNumber.hidden = type !== "Vor Ort";
-    if (fieldAddress) fieldAddress.hidden = type !== "Lieferung";
   };
 
   orderTypeButtons.forEach((btn) => {
@@ -768,10 +766,6 @@
     if (selectedOrderType === "Vor Ort" && formData.get("table")) {
       lines.push(`🪑 *Tischnummer:* ${formData.get("table")}`);
     }
-    if (selectedOrderType === "Lieferung" && formData.get("address")) {
-      lines.push(`📍 *Lieferadresse:* ${formData.get("address")}`);
-    }
-
     lines.push(`⏰ *Wunschzeit:* ${formData.get("time") || "Schnellstmöglich"}`);
     if (formData.get("notes")?.trim()) {
       lines.push(`📝 *Wünsche / Hinweise:* ${formData.get("notes").trim()}`);
